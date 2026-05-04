@@ -3,578 +3,576 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>MindGuard – Break Free From Screens</title>
-<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-<script src="/face-api.js"></script>
+<title>MindGuard – Your Screen Buddy</title>
+<link rel="manifest" href="manifest.json">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
 <style>
-/* ══════════════════════════════════════════
-   MINDGUARD — Design System
-   Aesthetic: Warm amber/coral anti-addiction
-   Fonts: Clash Display + Outfit
-   ══════════════════════════════════════════ */
 :root {
-  --bg:        #0e0a06;
-  --bg2:       #160f07;
-  --bg3:       #1d1408;
-  --card:      rgba(255,255,255,0.04);
-  --card-b:    rgba(255,255,255,0.08);
-  --amber:     #f59e0b;
-  --amber2:    #fbbf24;
-  --coral:     #f97316;
-  --coral2:    #ef4444;
-  --green:     #10b981;
-  --green2:    #34d399;
-  --blue:      #3b82f6;
-  --purple:    #8b5cf6;
-  --text:      #fef3c7;
-  --text-dim:  #92400e;
-  --text-mid:  #b45309;
-  --font-h:    'Clash Display', sans-serif;
-  --font-b:    'Outfit', sans-serif;
-  --r:         16px;
-  --r-lg:      24px;
-  --trans:     0.2s ease;
+  --bg:         #07090f;
+  --bg2:        #0d1020;
+  --bg3:        #111525;
+  --card:       rgba(255,255,255,0.045);
+  --card-b:     rgba(255,255,255,0.08);
+  --card-hover: rgba(255,255,255,0.07);
+  --indigo:     #6366f1;
+  --indigo2:    #818cf8;
+  --violet:     #a78bfa;
+  --pink:       #ec4899;
+  --pink2:      #f472b6;
+  --cyan:       #22d3ee;
+  --cyan2:      #67e8f9;
+  --green:      #10b981;
+  --green2:     #34d399;
+  --amber:      #fbbf24;
+  --red:        #ef4444;
+  --text:       #e2e8f0;
+  --text-dim:   #475569;
+  --text-mid:   #94a3b8;
+  --text-bright:#f1f5f9;
+  --font-h:     'Nunito', sans-serif;
+  --font-b:     'Space Grotesk', sans-serif;
+  --font-mono:  'Space Mono', monospace;
+  --r:          16px;
+  --r-lg:       24px;
+  --r-xl:       32px;
+  --trans:      0.22s ease;
+  --glow-i:     rgba(99,102,241,0.4);
+  --glow-p:     rgba(236,72,153,0.35);
+  --glow-c:     rgba(34,211,238,0.3);
+  --shadow-card:0 4px 32px rgba(0,0,0,0.6), 0 1px 0 rgba(255,255,255,0.04) inset;
 }
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{
-  font-family:var(--font-b);
-  background:var(--bg);
-  color:var(--text);
-  min-height:100vh;
+
+body {
+  font-family: var(--font-b);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
   background-image:
-    radial-gradient(ellipse 70% 50% at 10% 0%,rgba(245,158,11,0.07) 0%,transparent 60%),
-    radial-gradient(ellipse 50% 40% at 90% 100%,rgba(249,115,22,0.06) 0%,transparent 60%),
-    radial-gradient(ellipse 40% 30% at 50% 50%,rgba(16,185,129,0.03) 0%,transparent 60%);
+    radial-gradient(ellipse 70% 50% at 10% 0%, rgba(99,102,241,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 90% 0%, rgba(236,72,153,0.08) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 30% at 80% 90%, rgba(34,211,238,0.07) 0%, transparent 50%);
+}
+body::before {
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image: radial-gradient(circle, rgba(99,102,241,0.07) 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.6;
 }
 .hidden{display:none!important;}
 ::-webkit-scrollbar{width:4px;}
 ::-webkit-scrollbar-track{background:transparent;}
-::-webkit-scrollbar-thumb{background:rgba(245,158,11,0.2);border-radius:99px;}
+::-webkit-scrollbar-thumb{background:rgba(99,102,241,0.3);border-radius:99px;}
 
-/* ═══ HEADER ═══════════════════════════════ */
-.hdr{
+/* ═══ HEADER ════════════════════════════════ */
+.hdr {
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 28px;height:62px;
-  background:rgba(14,10,6,0.88);
-  backdrop-filter:blur(20px);
-  border-bottom:1px solid rgba(245,158,11,0.1);
+  padding:0 28px;height:68px;
+  background:rgba(7,9,15,0.9);
+  backdrop-filter:blur(24px) saturate(1.8);
+  border-bottom:1px solid rgba(99,102,241,0.15);
   position:sticky;top:0;z-index:100;
+  box-shadow:0 1px 40px rgba(0,0,0,0.5);
 }
-.logo{display:flex;align-items:center;gap:10px;font-family:var(--font-h);font-weight:700;font-size:1.15rem;letter-spacing:-0.3px;}
+.hdr::before {
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--indigo),var(--pink),var(--cyan),transparent);
+  opacity:0.7;
+}
+.logo{display:flex;align-items:center;gap:12px;font-family:var(--font-h);font-weight:900;font-size:1.2rem;}
 .logo-icon{
-  width:34px;height:34px;border-radius:10px;
-  background:linear-gradient(135deg,var(--amber),var(--coral));
-  display:flex;align-items:center;justify-content:center;font-size:1rem;
-  box-shadow:0 0 16px rgba(245,158,11,0.35);
+  width:38px;height:38px;border-radius:12px;
+  background:linear-gradient(135deg,var(--indigo),var(--pink));
+  display:flex;align-items:center;justify-content:center;font-size:1.1rem;
+  box-shadow:0 0 22px rgba(99,102,241,0.5), 0 2px 8px rgba(0,0,0,0.4);
 }
-.logo-text{
-  background:linear-gradient(90deg,var(--amber2),var(--coral));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-}
-.hdr-nav{display:flex;gap:2px;background:var(--card);border:1px solid var(--card-b);border-radius:99px;padding:4px;}
+.logo-text{background:linear-gradient(90deg,var(--indigo2),var(--pink2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.logo-tagline{font-size:0.68rem;color:var(--text-mid);font-weight:600;letter-spacing:0.05em;text-transform:uppercase;background:none;-webkit-text-fill-color:var(--text-mid);}
+.hdr-nav{display:flex;gap:2px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:99px;padding:4px;}
 .nav-btn{
   background:transparent;border:none;color:var(--text-mid);
-  font-family:var(--font-b);font-size:0.82rem;font-weight:500;
-  padding:6px 16px;border-radius:99px;cursor:pointer;transition:var(--trans);
+  font-family:var(--font-b);font-size:0.82rem;font-weight:600;
+  padding:7px 20px;border-radius:99px;cursor:pointer;transition:var(--trans);
 }
-.nav-btn:hover{color:var(--text);}
-.nav-btn.active{background:linear-gradient(135deg,var(--amber),var(--coral));color:#1c0a00;font-weight:600;}
+.nav-btn:hover{color:var(--text);background:rgba(255,255,255,0.05);}
+.nav-btn.active{background:linear-gradient(135deg,var(--indigo),var(--violet));color:#fff;font-weight:700;box-shadow:0 2px 14px rgba(99,102,241,0.4);}
 .hdr-right{display:flex;align-items:center;gap:10px;}
 .status-pill{
-  display:flex;align-items:center;gap:7px;padding:6px 14px;
-  background:var(--card);border:1px solid var(--card-b);border-radius:99px;
-  font-size:0.8rem;color:var(--text-mid);
+  display:flex;align-items:center;gap:7px;padding:7px 15px;
+  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:99px;
+  font-size:0.78rem;color:var(--text-mid);font-family:var(--font-mono);
 }
 .sdot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:pulse 2s infinite;}
-.sdot.blocked{background:var(--coral2);box-shadow:0 0 8px var(--coral2);}
+.sdot.blocked{background:var(--red);box-shadow:0 0 8px var(--red);}
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
-
-/* Lock status pill in header */
 .lock-pill{
-  display:flex;align-items:center;gap:6px;padding:5px 12px;
-  background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);
-  border-radius:99px;font-size:0.75rem;color:var(--amber);cursor:pointer;
-  transition:var(--trans);
+  display:flex;align-items:center;gap:7px;padding:7px 16px;
+  background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.25);
+  border-radius:99px;font-size:0.75rem;color:var(--indigo2);cursor:pointer;transition:var(--trans);font-weight:600;
 }
-.lock-pill:hover{background:rgba(245,158,11,0.15);}
-.lock-pill.locked-state{background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:var(--coral2);}
+.lock-pill:hover{background:rgba(99,102,241,0.18);box-shadow:0 0 14px rgba(99,102,241,0.2);}
+.lock-pill.locked-state{background:rgba(16,185,129,0.1);border-color:rgba(16,185,129,0.3);color:var(--green2);}
 
-/* ═══ MAIN ════════════════════════════════ */
-main{max-width:980px;margin:0 auto;padding:32px 20px 100px;}
+/* ═══ MAIN ══════════════════════════════════ */
+main{max-width:1000px;margin:0 auto;padding:36px 20px 110px;position:relative;z-index:1;}
 .section{display:none;}
-.section.active{display:block;animation:fadeUp 0.35s ease;}
-@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
-
-/* Page header */
+.section.active{display:block;animation:fadeUp 0.38s cubic-bezier(0.16,1,0.3,1);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
 .pg-head{margin-bottom:28px;}
-.pg-title{font-family:var(--font-h);font-size:2rem;font-weight:700;letter-spacing:-1px;line-height:1.1;margin-bottom:6px;}
-.pg-title em{font-style:normal;background:linear-gradient(90deg,var(--amber),var(--coral));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.pg-sub{font-size:0.88rem;color:var(--text-mid);}
+.pg-title{font-family:var(--font-h);font-size:2rem;font-weight:900;letter-spacing:-0.5px;line-height:1.1;margin-bottom:8px;}
+.pg-title em{font-style:normal;background:linear-gradient(90deg,var(--indigo2),var(--pink2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.pg-sub{font-size:0.87rem;color:var(--text-mid);}
 
-/* ═══ STATS GRID ═══════════════════════════ */
-.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px;}
+/* ═══ WELCOME BANNER ════════════════════════ */
+.welcome-banner {
+  background:linear-gradient(135deg,rgba(99,102,241,0.12),rgba(236,72,153,0.08));
+  border:1px solid rgba(99,102,241,0.2);
+  border-radius:var(--r-lg);
+  padding:22px 28px;
+  margin-bottom:22px;
+  display:flex;align-items:center;gap:18px;
+  box-shadow:var(--shadow-card);
+  position:relative;overflow:hidden;
+}
+.welcome-banner::before{
+  content:'';position:absolute;top:-40px;right:-40px;
+  width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(99,102,241,0.15),transparent);
+  pointer-events:none;
+}
+.welcome-avatar{
+  width:64px;height:64px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,rgba(99,102,241,0.25),rgba(236,72,153,0.2));
+  border:2px solid rgba(99,102,241,0.35);
+  display:flex;align-items:center;justify-content:center;
+  font-size:2rem;animation:floatFace 3s ease-in-out infinite;
+  box-shadow:0 4px 24px rgba(99,102,241,0.2);
+}
+@keyframes floatFace{0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);}}
+.welcome-text h2{font-family:var(--font-h);font-size:1.15rem;font-weight:800;margin-bottom:5px;color:var(--text-bright);}
+.welcome-text p{font-size:0.84rem;color:var(--text-mid);line-height:1.5;}
+.xp-bar-wrap{margin-top:10px;}
+.xp-label{display:flex;justify-content:space-between;font-size:0.7rem;color:var(--text-dim);font-family:var(--font-mono);margin-bottom:5px;}
+.xp-track{height:6px;background:rgba(255,255,255,0.06);border-radius:99px;overflow:hidden;}
+.xp-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--indigo),var(--pink));transition:width 0.8s cubic-bezier(.4,0,.2,1);}
+
+/* ═══ STATS GRID ════════════════════════════ */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px;}
 .stat-card{
   background:var(--card);border:1px solid var(--card-b);border-radius:var(--r);
-  padding:20px 18px;display:flex;flex-direction:column;gap:6px;
-  position:relative;overflow:hidden;transition:var(--trans);
+  padding:20px 16px;display:flex;flex-direction:column;gap:6px;
+  position:relative;overflow:hidden;transition:all var(--trans);
+  box-shadow:var(--shadow-card);
+  animation:fadeUp 0.4s cubic-bezier(0.16,1,0.3,1) both;
 }
-.stat-card::before{
-  content:'';position:absolute;inset:0;border-radius:var(--r);
-  background:linear-gradient(135deg,rgba(245,158,11,0.06),transparent);
-  opacity:0;transition:var(--trans);
-}
-.stat-card:hover::before{opacity:1;}
-.stat-card.accent{background:linear-gradient(135deg,rgba(245,158,11,0.1),rgba(249,115,22,0.06));border-color:rgba(245,158,11,0.2);}
+.stat-card:nth-child(1){animation-delay:0.04s;}
+.stat-card:nth-child(2){animation-delay:0.08s;}
+.stat-card:nth-child(3){animation-delay:0.12s;}
+.stat-card:nth-child(4){animation-delay:0.16s;}
+.stat-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent-grad,linear-gradient(90deg,var(--indigo),var(--violet)));opacity:0.6;}
+.stat-card:hover{transform:translateY(-3px);border-color:rgba(99,102,241,0.25);box-shadow:0 14px 50px rgba(0,0,0,0.5),0 0 0 1px rgba(99,102,241,0.12);}
+.stat-card.accent{background:linear-gradient(135deg,rgba(99,102,241,0.12),rgba(167,139,250,0.06));border-color:rgba(99,102,241,0.22);box-shadow:var(--shadow-card),0 0 40px rgba(99,102,241,0.1);}
 .stat-icon{font-size:1.4rem;margin-bottom:2px;}
-.stat-val{font-family:var(--font-h);font-size:1.8rem;font-weight:700;letter-spacing:-1px;color:var(--amber2);}
-.stat-lbl{font-size:0.72rem;color:var(--text-mid);text-transform:uppercase;letter-spacing:0.8px;font-weight:500;}
+.stat-val{font-family:var(--font-h);font-size:1.8rem;font-weight:900;letter-spacing:-1px;color:var(--indigo2);line-height:1;}
+.stat-lbl{font-size:0.68rem;color:var(--text-mid);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-top:2px;}
 
-/* ═══ PROGRESS ═════════════════════════════ */
+/* ═══ PROGRESS ══════════════════════════════ */
 .progress-card{
   background:var(--card);border:1px solid var(--card-b);border-radius:var(--r);
-  padding:22px 22px 18px;margin-bottom:16px;
+  padding:22px 24px 18px;margin-bottom:14px;
+  box-shadow:var(--shadow-card);transition:border-color var(--trans);
 }
+.progress-card:hover{border-color:rgba(99,102,241,0.15);}
 .progress-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
-.progress-top h3{font-family:var(--font-h);font-size:0.95rem;font-weight:600;}
-.progress-pct{font-family:var(--font-h);font-size:1.1rem;font-weight:700;color:var(--amber);}
-.track{height:16px;background:rgba(255,255,255,0.05);border-radius:99px;overflow:visible;position:relative;margin-bottom:10px;}
-.track-fill{
-  height:100%;border-radius:99px;
-  background:linear-gradient(90deg,var(--amber),var(--amber2));
-  transition:width 0.6s cubic-bezier(.4,0,.2,1);
-  box-shadow:0 0 14px rgba(245,158,11,0.4);
-  position:relative;
-}
-.track-fill.warn{background:linear-gradient(90deg,var(--coral),#fbbf24);box-shadow:0 0 14px rgba(249,115,22,0.5);}
-.track-fill.danger{background:linear-gradient(90deg,var(--coral2),var(--coral));box-shadow:0 0 14px rgba(239,68,68,0.5);}
-.track-marker{
-  position:absolute;top:-5px;width:2px;height:26px;
-  background:rgba(255,255,255,0.15);border-radius:99px;transform:translateX(-50%);
-}
-.track-marker.dm{background:rgba(239,68,68,0.4);}
-.track-labels{display:flex;justify-content:space-between;font-size:0.7rem;color:var(--text-dim);}
+.progress-top h3{font-family:var(--font-h);font-size:0.95rem;font-weight:800;color:var(--text-bright);}
+.progress-pct{font-family:var(--font-mono);font-size:1.1rem;font-weight:700;color:var(--indigo2);}
+.track{height:16px;background:rgba(255,255,255,0.05);border-radius:99px;overflow:visible;position:relative;margin-bottom:10px;border:1px solid rgba(255,255,255,0.04);}
+.track-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--indigo),var(--violet));transition:width 0.7s cubic-bezier(.4,0,.2,1);box-shadow:0 0 18px rgba(99,102,241,0.5);position:relative;overflow:hidden;}
+.track-fill::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.2) 50%,transparent 100%);animation:fillShimmer 2s linear infinite;}
+@keyframes fillShimmer{0%{transform:translateX(-100%);}100%{transform:translateX(300%);}}
+.track-fill.warn{background:linear-gradient(90deg,var(--amber),#f97316);box-shadow:0 0 18px rgba(251,191,36,0.5);}
+.track-fill.danger{background:linear-gradient(90deg,var(--red),#f97316);box-shadow:0 0 18px rgba(239,68,68,0.55);animation:dangerPulse 1.2s ease-in-out infinite;}
+@keyframes dangerPulse{0%,100%{box-shadow:0 0 18px rgba(239,68,68,0.5);}50%{box-shadow:0 0 32px rgba(239,68,68,0.9);}}
+.track-marker{position:absolute;top:-5px;width:2px;height:26px;background:rgba(255,255,255,0.1);border-radius:99px;transform:translateX(-50%);}
+.track-marker.dm{background:rgba(239,68,68,0.45);}
+.track-labels{display:flex;justify-content:space-between;font-size:0.68rem;color:var(--text-dim);font-family:var(--font-mono);}
 
-/* ═══ MOOD BAR (avatar) ════════════════════ */
+/* ═══ MOOD ROW ══════════════════════════════ */
 .mood-row{
-  display:flex;align-items:center;gap:14px;
+  display:flex;align-items:center;gap:16px;
   background:var(--card);border:1px solid var(--card-b);border-radius:var(--r);
-  padding:16px 20px;margin-bottom:16px;
+  padding:16px 22px;margin-bottom:14px;box-shadow:var(--shadow-card);
+  transition:all var(--trans);
 }
+.mood-row:hover{border-color:rgba(99,102,241,0.15);}
 .mood-face{
   width:52px;height:52px;border-radius:50%;flex-shrink:0;
   display:flex;align-items:center;justify-content:center;font-size:1.5rem;
-  background:linear-gradient(135deg,rgba(245,158,11,0.15),rgba(16,185,129,0.1));
-  border:2px solid rgba(245,158,11,0.2);
-  transition:var(--trans);animation:floatFace 3s ease-in-out infinite;
+  background:linear-gradient(135deg,rgba(99,102,241,0.2),rgba(236,72,153,0.1));
+  border:2px solid rgba(99,102,241,0.25);transition:all 0.4s ease;
+  animation:floatFace 3s ease-in-out infinite;box-shadow:0 4px 20px rgba(99,102,241,0.15);
 }
-.mood-face.tired{background:linear-gradient(135deg,rgba(249,115,22,0.15),rgba(245,158,11,0.1));border-color:rgba(249,115,22,0.3);}
-.mood-face.danger{background:linear-gradient(135deg,rgba(239,68,68,0.2),rgba(249,115,22,0.1));border-color:rgba(239,68,68,0.4);animation:dangerpulse 1s ease infinite alternate;}
-@keyframes floatFace{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
-@keyframes dangerpulse{from{box-shadow:0 0 10px rgba(239,68,68,0.3);}to{box-shadow:0 0 25px rgba(239,68,68,0.7);}}
-.mood-text h4{font-family:var(--font-h);font-size:0.95rem;font-weight:600;margin-bottom:3px;}
-.mood-text p{font-size:0.82rem;color:var(--text-mid);}
+.mood-face.tired{background:linear-gradient(135deg,rgba(251,191,36,0.2),rgba(249,115,22,0.1));border-color:rgba(251,191,36,0.4);box-shadow:0 4px 20px rgba(251,191,36,0.2);}
+.mood-face.danger{background:linear-gradient(135deg,rgba(239,68,68,0.25),rgba(249,115,22,0.12));border-color:rgba(239,68,68,0.5);animation:dangerpulse 1s ease infinite alternate;box-shadow:0 4px 24px rgba(239,68,68,0.3);}
+@keyframes dangerpulse{from{box-shadow:0 0 12px rgba(239,68,68,0.4);}to{box-shadow:0 0 30px rgba(239,68,68,0.8);}}
+.mood-text h4{font-family:var(--font-h);font-size:1rem;font-weight:800;margin-bottom:4px;color:var(--text-bright);}
+.mood-text p{font-size:0.82rem;color:var(--text-mid);line-height:1.5;}
 
-/* ═══ LIMIT SETTER ══════════════════════════ */
+/* ═══ LIMIT ROW ═════════════════════════════ */
 .limit-row{
   display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;
   background:var(--card);border:1px solid var(--card-b);border-radius:var(--r);
-  padding:18px 22px;margin-bottom:16px;
+  padding:18px 22px;margin-bottom:14px;box-shadow:var(--shadow-card);
 }
-.limit-info h4{font-family:var(--font-h);font-size:0.9rem;margin-bottom:3px;}
+.limit-info h4{font-family:var(--font-h);font-size:0.92rem;font-weight:800;margin-bottom:4px;color:var(--text-bright);}
 .limit-info p{font-size:0.78rem;color:var(--text-mid);}
 .limit-ctrl{display:flex;align-items:center;gap:14px;}
-input[type=range]{
-  -webkit-appearance:none;width:150px;height:5px;border-radius:99px;
-  background:rgba(255,255,255,0.08);outline:none;cursor:pointer;
-}
-input[type=range]::-webkit-slider-thumb{
-  -webkit-appearance:none;width:18px;height:18px;border-radius:50%;
-  background:linear-gradient(135deg,var(--amber),var(--coral));
-  box-shadow:0 0 10px rgba(245,158,11,0.5);cursor:pointer;
-}
-.limit-val{font-family:var(--font-h);font-weight:700;font-size:1rem;color:var(--amber);min-width:40px;}
+input[type=range]{-webkit-appearance:none;width:150px;height:5px;border-radius:99px;background:rgba(255,255,255,0.08);outline:none;cursor:pointer;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,var(--indigo),var(--violet));box-shadow:0 0 12px rgba(99,102,241,0.6),0 2px 4px rgba(0,0,0,0.4);cursor:pointer;transition:transform 0.15s ease;}
+input[type=range]::-webkit-slider-thumb:active{transform:scale(1.15);}
+.limit-val{font-family:var(--font-mono);font-weight:700;font-size:1rem;color:var(--indigo2);min-width:40px;}
 
-/* Buttons */
+/* ═══ BUTTONS ═══════════════════════════════ */
 .btn{
-  display:inline-flex;align-items:center;gap:7px;padding:9px 18px;
+  display:inline-flex;align-items:center;gap:8px;padding:10px 20px;
   border:none;border-radius:99px;font-family:var(--font-b);font-size:0.85rem;
-  font-weight:600;cursor:pointer;transition:var(--trans);white-space:nowrap;
+  font-weight:700;cursor:pointer;transition:all var(--trans);white-space:nowrap;
 }
 .btn:disabled{opacity:0.35;cursor:not-allowed;}
-.btn-primary{background:linear-gradient(135deg,var(--amber),var(--coral));color:#1c0a00;}
-.btn-primary:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 6px 20px rgba(245,158,11,0.35);}
+.btn-primary{background:linear-gradient(135deg,var(--indigo),var(--violet));color:#fff;box-shadow:0 2px 14px rgba(99,102,241,0.35);}
+.btn-primary:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 28px rgba(99,102,241,0.45);}
+.btn-primary:active:not(:disabled){transform:translateY(0);}
 .btn-ghost{background:var(--card);border:1px solid var(--card-b);color:var(--text-mid);}
-.btn-ghost:hover:not(:disabled){color:var(--text);border-color:rgba(245,158,11,0.3);}
-.btn-danger{background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.3);color:var(--coral2);}
-.btn-danger:hover:not(:disabled){background:rgba(239,68,68,0.25);}
-.btn-green{background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.3);color:var(--green2);}
-.btn-green:hover:not(:disabled){background:rgba(16,185,129,0.25);}
-.btn-lg{padding:12px 26px;font-size:0.95rem;}
+.btn-ghost:hover:not(:disabled){color:var(--text);border-color:rgba(99,102,241,0.3);background:rgba(255,255,255,0.06);}
+.btn-danger{background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.25);color:var(--red);}
+.btn-danger:hover:not(:disabled){background:rgba(239,68,68,0.22);}
+.btn-green{background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.28);color:var(--green2);}
+.btn-green:hover:not(:disabled){background:rgba(16,185,129,0.22);}
+.btn-pink{background:rgba(236,72,153,0.12);border:1px solid rgba(236,72,153,0.28);color:var(--pink2);}
+.btn-pink:hover:not(:disabled){background:rgba(236,72,153,0.22);}
+.btn-lg{padding:13px 28px;font-size:0.96rem;}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;}
 
-/* Reward banner */
+/* ═══ REWARD BANNER ══════════════════════════ */
 .reward-banner{
   background:linear-gradient(135deg,rgba(16,185,129,0.12),rgba(16,185,129,0.05));
   border:1px solid rgba(16,185,129,0.25);border-radius:var(--r);
-  padding:14px 20px;font-size:0.88rem;color:var(--green2);
-  animation:fadeUp 0.4s ease;
+  padding:16px 22px;font-size:0.88rem;color:var(--green2);
+  animation:fadeUp 0.4s ease;display:flex;align-items:center;gap:10px;
 }
 
-/* ═══ APPS GRID ════════════════════════════ */
+/* ═══ MENTAL HEALTH SECTION ══════════════════ */
+.mh-section{margin-bottom:20px;}
+.mh-header{font-family:var(--font-h);font-size:1rem;font-weight:800;color:var(--text-bright);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.mh-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.mh-card{
+  background:var(--card);border:1px solid var(--card-b);border-radius:var(--r);
+  padding:18px 16px;text-align:center;cursor:pointer;transition:all var(--trans);
+  box-shadow:var(--shadow-card);position:relative;overflow:hidden;
+}
+.mh-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--mh-grad,linear-gradient(90deg,var(--indigo),var(--violet)));opacity:0.7;}
+.mh-card:hover{transform:translateY(-3px);border-color:rgba(99,102,241,0.25);box-shadow:0 12px 40px rgba(0,0,0,0.5);}
+.mh-emoji{font-size:1.8rem;margin-bottom:8px;display:block;}
+.mh-title{font-family:var(--font-h);font-size:0.82rem;font-weight:800;margin-bottom:4px;color:var(--text-bright);}
+.mh-sub{font-size:0.72rem;color:var(--text-mid);line-height:1.4;}
+.mh-modal{
+  position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);
+  animation:fadeIn 0.2s ease;
+}
+.mh-modal-box{
+  background:var(--bg2);border:1px solid rgba(99,102,241,0.2);border-radius:var(--r-xl);
+  padding:36px;max-width:440px;width:90%;
+  box-shadow:0 0 80px rgba(99,102,241,0.15),0 24px 64px rgba(0,0,0,0.6);
+  animation:bounceIn 0.4s cubic-bezier(.34,1.56,.64,1);
+}
+.mh-modal-box h2{font-family:var(--font-h);font-size:1.3rem;font-weight:900;margin-bottom:8px;color:var(--text-bright);}
+.mh-modal-box p{font-size:0.88rem;color:var(--text-mid);line-height:1.6;margin-bottom:20px;}
+.mh-tips{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:24px;}
+.mh-tips li{
+  background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.15);
+  border-radius:12px;padding:12px 16px;font-size:0.85rem;color:var(--text);
+  display:flex;align-items:flex-start;gap:10px;
+}
+.mh-tips li span{font-size:1.1rem;flex-shrink:0;}
+.breathing-viz{
+  width:100px;height:100px;border-radius:50%;margin:0 auto 20px;
+  background:radial-gradient(circle,rgba(99,102,241,0.3),rgba(99,102,241,0.05));
+  border:2px solid rgba(99,102,241,0.3);display:flex;align-items:center;justify-content:center;
+  font-size:2rem;animation:breathe 4s ease-in-out infinite;
+}
+@keyframes breathe{0%,100%{transform:scale(0.9);box-shadow:0 0 20px rgba(99,102,241,0.2);}50%{transform:scale(1.15);box-shadow:0 0 50px rgba(99,102,241,0.5);}}
+.breathing-text{text-align:center;font-family:var(--font-mono);font-size:0.8rem;color:var(--indigo2);margin-bottom:16px;}
+
+/* ═══ APPS GRID ════════════════════════════= */
 .apps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px;}
 .app-card{
   background:var(--card);border:1px solid var(--card-b);border-radius:var(--r);
-  padding:24px 16px;text-align:center;cursor:pointer;transition:var(--trans);
-  position:relative;overflow:hidden;
+  padding:26px 16px 18px;text-align:center;cursor:pointer;transition:all var(--trans);
+  position:relative;overflow:hidden;box-shadow:var(--shadow-card);
 }
-.app-card::after{
-  content:'';position:absolute;inset:0;border-radius:var(--r);
-  background:linear-gradient(135deg,rgba(245,158,11,0.07),rgba(249,115,22,0.04));
-  opacity:0;transition:var(--trans);
-}
-.app-card:hover{transform:translateY(-3px);border-color:rgba(245,158,11,0.25);}
-.app-card:hover::after{opacity:1;}
+.app-card::before{content:'';position:absolute;top:0;left:20%;right:20%;height:1px;background:linear-gradient(90deg,transparent,rgba(99,102,241,0.5),transparent);opacity:0;transition:var(--trans);}
+.app-card:hover{transform:translateY(-4px);border-color:rgba(99,102,241,0.3);box-shadow:0 16px 48px rgba(0,0,0,0.55),0 0 0 1px rgba(99,102,241,0.12);}
+.app-card:hover::before{opacity:1;}
 .app-card:active{transform:scale(0.97);}
-.app-card.blocked-card{opacity:0.35;cursor:not-allowed;filter:grayscale(0.8);}
-.app-card.blocked-card:hover{transform:none;border-color:var(--card-b);}
-.app-card.blocked-card::after{display:none;}
-.app-emoji{font-size:2.2rem;margin-bottom:10px;}
-.app-name{font-family:var(--font-h);font-size:0.9rem;font-weight:600;margin-bottom:8px;}
-.app-badge{
-  display:inline-block;background:rgba(255,255,255,0.05);
-  border:1px solid var(--card-b);border-radius:99px;
-  padding:2px 10px;font-size:0.7rem;color:var(--text-mid);
-}
+.app-card.blocked-card{opacity:0.3;cursor:not-allowed;filter:grayscale(1) brightness(0.6);}
+.app-card.blocked-card:hover{transform:none;border-color:var(--card-b);box-shadow:var(--shadow-card);}
+.app-emoji{font-size:2.2rem;margin-bottom:10px;display:block;transition:transform 0.3s ease;}
+.app-card:hover .app-emoji{transform:scale(1.12) translateY(-2px);}
+.app-name{font-family:var(--font-h);font-size:0.88rem;font-weight:800;margin-bottom:8px;color:var(--text-bright);}
+.app-badge{display:inline-block;background:rgba(255,255,255,0.04);border:1px solid var(--card-b);border-radius:99px;padding:3px 12px;font-size:0.7rem;color:var(--text-mid);font-family:var(--font-mono);}
+.app-time{display:block;font-size:0.68rem;color:var(--indigo2);font-family:var(--font-mono);margin-top:4px;}
 
-/* App open screen */
-.app-open{
-  background:var(--bg2);border:1px solid var(--card-b);border-radius:var(--r-lg);
-  padding:36px 24px;text-align:center;animation:fadeUp 0.3s ease;
-}
+.app-open{background:var(--bg2);border:1px solid var(--card-b);border-radius:var(--r-lg);padding:40px 28px;text-align:center;animation:fadeUp 0.3s cubic-bezier(0.16,1,0.3,1);box-shadow:var(--shadow-card);margin-top:8px;}
 .app-open-inner{max-width:380px;margin:0 auto;}
-.aoe{font-size:3.2rem;margin-bottom:12px;}
-.app-open-inner h2{font-family:var(--font-h);font-size:1.5rem;margin-bottom:6px;}
-.app-open-inner p{color:var(--text-mid);margin-bottom:22px;font-size:0.9rem;}
-.fake-posts{display:flex;flex-direction:column;gap:10px;margin-bottom:22px;}
-.fp{height:72px;background:var(--card);border:1px solid var(--card-b);border-radius:12px;animation:shimmer 1.5s infinite;}
+.aoe{font-size:3.4rem;margin-bottom:14px;display:block;animation:floatFace 3s ease-in-out infinite;}
+.app-open-inner h2{font-family:var(--font-h);font-size:1.5rem;font-weight:900;margin-bottom:8px;color:var(--text-bright);}
+.app-open-inner p{color:var(--text-mid);margin-bottom:24px;font-size:0.9rem;}
+.fake-posts{display:flex;flex-direction:column;gap:10px;margin-bottom:24px;}
+.fp{height:72px;background:var(--card);border:1px solid var(--card-b);border-radius:14px;animation:shimmer 1.5s infinite;}
 .fp.short{height:48px;}
-@keyframes shimmer{0%,100%{opacity:0.5;}50%{opacity:1;}}
+@keyframes shimmer{0%,100%{opacity:0.4;}50%{opacity:0.8;}}
 
-/* ═══ ANALYTICS ════════════════════════════ */
+/* ═══ ANALYTICS ══════════════════════════════ */
 .analytics-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-.a-card{background:var(--card);border:1px solid var(--card-b);border-radius:var(--r);padding:22px;}
+.a-card{background:var(--card);border:1px solid var(--card-b);border-radius:var(--r);padding:22px;box-shadow:var(--shadow-card);transition:border-color var(--trans);}
+.a-card:hover{border-color:rgba(99,102,241,0.12);}
 .a-card.full{grid-column:1/-1;}
-.a-card h3{font-family:var(--font-h);font-size:0.92rem;font-weight:600;margin-bottom:18px;color:var(--amber2);}
+.a-card h3{font-family:var(--font-h);font-size:0.92rem;font-weight:800;margin-bottom:18px;color:var(--indigo2);}
+.bar-chart{display:flex;flex-direction:column;gap:10px;}
+.bar-row{display:grid;grid-template-columns:90px 1fr;align-items:center;gap:12px;}
+.bar-lbl{font-size:0.78rem;color:var(--text-mid);font-weight:600;text-align:right;}
+.bar-track{height:22px;background:rgba(255,255,255,0.04);border-radius:99px;overflow:hidden;border:1px solid rgba(255,255,255,0.04);}
+.bar-fill{height:100%;border-radius:99px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;font-size:0.68rem;color:rgba(255,255,255,0.8);font-family:var(--font-mono);font-weight:700;min-width:10%;transition:width 0.8s cubic-bezier(.4,0,.2,1);}
+.sum-rows{display:flex;flex-direction:column;gap:10px;}
+.sum-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.05);}
+.sum-row:last-child{border-bottom:none;}
+.sum-row span{font-size:0.82rem;color:var(--text-mid);}
+.sum-row strong{font-family:var(--font-mono);font-size:0.85rem;color:var(--text-bright);}
+.ring-wrap{position:relative;width:120px;height:120px;margin:0 auto 14px;}
+.fring{width:100%;height:100%;}
+.ring-bg{fill:none;stroke:rgba(255,255,255,0.06);stroke-width:10;}
+.ring-fill{fill:none;stroke:url(#rg);stroke-width:10;stroke-linecap:round;transform:rotate(-90deg);transform-origin:50% 50%;transition:stroke-dashoffset 1s cubic-bezier(.4,0,.2,1);}
+.ring-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.ring-center span{font-family:var(--font-h);font-size:2rem;font-weight:900;color:var(--text-bright);line-height:1;}
+.ring-center small{font-size:0.72rem;color:var(--text-mid);font-family:var(--font-mono);}
+.focus-lbl{text-align:center;font-size:0.82rem;color:var(--text-mid);}
 
-/* Bar chart */
-.bar-chart{display:flex;flex-direction:column;gap:12px;}
-.bar-row{display:flex;align-items:center;gap:12px;}
-.bar-lbl{width:84px;font-size:0.78rem;color:var(--text-mid);text-align:right;flex-shrink:0;}
-.bar-track{flex:1;height:26px;background:rgba(255,255,255,0.04);border-radius:8px;overflow:hidden;}
-.bar-fill{
-  height:100%;border-radius:8px;
-  background:linear-gradient(90deg,var(--amber),var(--coral));
-  transition:width 0.8s cubic-bezier(.4,0,.2,1);
-  display:flex;align-items:center;padding:0 10px;
-  font-size:0.73rem;color:rgba(28,10,0,0.9);font-weight:700;min-width:36px;
+/* ═══ PARENT / GUARDIAN SECTION ══════════════ */
+.parent-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.p-card{
+  background:var(--card);border:1px solid var(--card-b);border-radius:var(--r-lg);
+  padding:26px;display:flex;flex-direction:column;gap:14px;
+  box-shadow:var(--shadow-card);
 }
+.p-card h3{font-family:var(--font-h);font-size:1rem;font-weight:800;color:var(--text-bright);}
+.p-card p{font-size:0.82rem;color:var(--text-mid);line-height:1.5;}
+.reg-status{display:flex;align-items:center;gap:8px;font-size:0.8rem;font-family:var(--font-mono);color:var(--text-mid);}
+.reg-dot{width:8px;height:8px;border-radius:50%;background:var(--text-dim);box-shadow:none;transition:all 0.3s;}
+.reg-dot.registered{background:var(--green);box-shadow:0 0 8px var(--green);}
+.cam-wrap{width:100%;height:180px;border-radius:var(--r);overflow:hidden;background:rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.05);position:relative;}
+.cam-wrap video{width:100%;height:100%;object-fit:cover;}
+.cam-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--text-mid);}
+.ci{font-size:2rem;}
+.face-box-ov{position:absolute;top:20%;left:30%;width:40%;height:60%;border:2px solid var(--indigo2);border-radius:8px;pointer-events:none;display:none;box-shadow:0 0 20px rgba(99,102,241,0.4);}
+.mdl-progress{display:flex;flex-direction:column;gap:6px;}
+.mdl-track{height:4px;background:rgba(255,255,255,0.06);border-radius:99px;overflow:hidden;}
+.mdl-fill{height:100%;background:linear-gradient(90deg,var(--indigo),var(--violet));transition:width 0.4s ease;border-radius:99px;}
+.mdl-progress span{font-size:0.72rem;color:var(--text-dim);font-family:var(--font-mono);}
+.lock-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.ls-item{text-align:center;background:rgba(255,255,255,0.03);border-radius:12px;padding:14px 8px;border:1px solid rgba(255,255,255,0.06);}
+.ls-val{font-family:var(--font-h);font-size:1.5rem;font-weight:900;color:var(--indigo2);line-height:1;}
+.ls-lbl{font-size:0.68rem;color:var(--text-mid);text-transform:uppercase;letter-spacing:0.8px;margin-top:4px;font-weight:600;}
+.p-alert{border-radius:10px;padding:10px 16px;font-size:0.8rem;margin-top:4px;opacity:0;transition:opacity 0.3s;height:0;overflow:hidden;}
+.p-alert.show{opacity:1;height:auto;}
+.p-alert.ok{background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.25);color:var(--green2);}
+.p-alert.err{background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.25);color:var(--red);}
+.p-alert.info{background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.2);color:var(--indigo2);}
 
-/* Summary rows */
-.sum-rows{display:flex;flex-direction:column;gap:14px;}
-.sum-row{
-  display:flex;justify-content:space-between;align-items:center;
-  padding-bottom:12px;border-bottom:1px solid var(--card-b);font-size:0.85rem;
+/* ═══ ALERT NOTIFICATION SECTION ════════════ */
+.alert-history{background:var(--card);border:1px solid var(--card-b);border-radius:var(--r);padding:22px;box-shadow:var(--shadow-card);margin-top:14px;}
+.alert-history h3{font-family:var(--font-h);font-size:0.9rem;font-weight:800;color:var(--text-bright);margin-bottom:14px;}
+.alert-list{display:flex;flex-direction:column;gap:8px;max-height:200px;overflow-y:auto;}
+.alert-item{
+  display:flex;align-items:center;gap:10px;padding:10px 14px;
+  background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;
+  font-size:0.8rem;
 }
-.sum-row:last-child{border-bottom:none;padding-bottom:0;}
-.sum-row span{color:var(--text-mid);}
-.sum-row strong{color:var(--text);}
+.alert-item.warn{border-left:3px solid var(--amber);}
+.alert-item.danger{border-left:3px solid var(--red);}
+.alert-item.info{border-left:3px solid var(--indigo);}
+.alert-time{font-family:var(--font-mono);font-size:0.68rem;color:var(--text-dim);margin-left:auto;flex-shrink:0;}
+.alert-empty{color:var(--text-dim);font-size:0.8rem;text-align:center;padding:20px 0;}
 
-/* Focus ring */
-.ring-wrap{position:relative;width:110px;height:110px;margin:0 auto 10px;}
-.fring{width:100%;height:100%;transform:rotate(-90deg);}
-.ring-bg{fill:none;stroke:rgba(255,255,255,0.05);stroke-width:9;}
-.ring-fill{fill:none;stroke:var(--amber);stroke-width:9;stroke-linecap:round;transition:stroke-dashoffset 1s ease;}
-.ring-center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;}
-#focusScore{font-family:var(--font-h);font-size:1.7rem;font-weight:700;color:var(--amber2);}
-.ring-center small{font-size:0.68rem;color:var(--text-mid);}
-.focus-lbl{text-align:center;font-size:0.8rem;color:var(--text-mid);}
-
-/* ═══ PARENT CONTROL TAB ═══════════════════ */
-.parent-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-.p-card{background:var(--card);border:1px solid var(--card-b);border-radius:var(--r);padding:22px;display:flex;flex-direction:column;gap:16px;}
-.p-card h3{font-family:var(--font-h);font-size:0.95rem;font-weight:600;color:var(--amber2);margin-bottom:2px;}
-.p-card p{font-size:0.82rem;color:var(--text-mid);}
-.reg-status{display:flex;align-items:center;gap:8px;font-size:0.82rem;padding:8px 14px;border-radius:99px;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.2);color:var(--coral2);}
-.reg-status.registered{background:rgba(16,185,129,0.1);border-color:rgba(16,185,129,0.2);color:var(--green2);}
-.reg-dot{width:7px;height:7px;border-radius:50%;background:currentColor;flex-shrink:0;}
-
-/* Webcam */
-.cam-wrap{
-  position:relative;width:100%;aspect-ratio:4/3;border-radius:12px;
-  overflow:hidden;background:#000;
-  border:2px solid rgba(245,158,11,0.2);transition:border-color 0.3s;
+/* Parent PIN setup */
+.pin-setup{background:rgba(99,102,241,0.06);border:1px solid rgba(99,102,241,0.15);border-radius:var(--r);padding:18px;margin-top:6px;}
+.pin-setup h4{font-family:var(--font-h);font-size:0.88rem;font-weight:800;color:var(--text-bright);margin-bottom:6px;}
+.pin-setup p{font-size:0.78rem;color:var(--text-mid);margin-bottom:14px;}
+.pin-input{width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(99,102,241,0.2);border-radius:10px;padding:10px 14px;color:var(--text-bright);font-family:var(--font-mono);font-size:1rem;letter-spacing:6px;outline:none;transition:border-color 0.2s;}
+.pin-input:focus{border-color:rgba(99,102,241,0.5);}
+.parent-msg{
+  background:linear-gradient(135deg,rgba(99,102,241,0.08),rgba(236,72,153,0.05));
+  border:1px solid rgba(99,102,241,0.15);border-radius:var(--r);padding:18px 20px;
+  font-size:0.83rem;color:var(--text-mid);line-height:1.6;margin-top:6px;
 }
-.cam-wrap.live{border-color:var(--amber);box-shadow:0 0 20px rgba(245,158,11,0.15);}
-.cam-wrap video{width:100%;height:100%;object-fit:cover;display:none;}
-.cam-wrap video.on{display:block;}
-.cam-placeholder{
-  position:absolute;inset:0;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;gap:8px;color:var(--text-dim);
-}
-.cam-placeholder .ci{font-size:2rem;opacity:0.35;}
-.cam-placeholder p{font-size:0.78rem;}
-.face-box-ov{
-  position:absolute;border:2px solid var(--green);border-radius:4px;
-  box-shadow:0 0 12px rgba(16,185,129,0.4);display:none;pointer-events:none;
-  transition:all 0.08s linear;
-}
+.parent-msg strong{color:var(--indigo2);font-weight:700;}
+.parent-msg .pm-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;}
+.parent-msg .pm-row:last-child{margin-bottom:0;}
+.parent-msg .pm-icon{font-size:1.1rem;flex-shrink:0;margin-top:1px;}
 
-/* Model progress */
-.mdl-progress{display:flex;flex-direction:column;gap:5px;font-size:0.78rem;color:var(--text-mid);}
-.mdl-track{height:4px;background:var(--card-b);border-radius:99px;overflow:hidden;}
-.mdl-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--amber),var(--coral));border-radius:99px;transition:width 0.5s ease;}
-
-/* Alert box */
-.p-alert{padding:10px 14px;border-radius:10px;font-size:0.8rem;display:none;}
-.p-alert.show{display:block;animation:fadeUp 0.2s ease;}
-.p-alert.ok{background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.25);color:var(--green2);}
-.p-alert.err{background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.25);color:var(--coral2);}
-.p-alert.info{background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);color:var(--amber2);}
-
-.btn-row{display:flex;gap:8px;flex-wrap:wrap;}
-
-/* Lock stats mini */
-.lock-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
-.ls-item{background:var(--bg2);border:1px solid var(--card-b);border-radius:10px;padding:12px;text-align:center;}
-.ls-val{font-family:var(--font-h);font-size:1.4rem;font-weight:700;color:var(--amber);margin-bottom:2px;}
-.ls-lbl{font-size:0.68rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.5px;}
-
-/* ═══ BLOCKED OVERLAY ══════════════════════ */
+/* ═══ BLOCKED OVERLAY ═══════════════════════ */
 .blocked-ov{
-  position:fixed;inset:0;background:rgba(8,4,0,0.97);
-  backdrop-filter:blur(22px) saturate(0.3);
-  z-index:900;display:flex;align-items:center;justify-content:center;
-  animation:fadeIn 0.35s ease;
+  position:fixed;inset:0;z-index:300;
+  background:rgba(7,9,15,0.96);backdrop-filter:blur(20px);
+  display:flex;align-items:center;justify-content:center;
+  animation:fadeIn 0.3s ease;
 }
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
 .blocked-box{
-  text-align:center;max-width:420px;width:92%;padding:44px 32px;
-  background:var(--bg2);border:1px solid rgba(249,115,22,0.2);border-radius:28px;
-  box-shadow:0 0 60px rgba(249,115,22,0.08);
-  animation:bounceIn 0.45s cubic-bezier(.4,0,.2,1);
+  background:var(--bg2);border:1px solid rgba(239,68,68,0.2);border-radius:var(--r-xl);
+  padding:44px 40px;max-width:420px;width:90%;text-align:center;
+  box-shadow:0 0 60px rgba(239,68,68,0.1),0 24px 64px rgba(0,0,0,0.7);
+  animation:bounceIn 0.4s cubic-bezier(.34,1.56,.64,1);
 }
-@keyframes bounceIn{0%{transform:scale(0.82);opacity:0;}70%{transform:scale(1.03);}100%{transform:scale(1);opacity:1;}}
-.blocked-icon{font-size:3.5rem;margin-bottom:18px;display:block;animation:iconShake 0.5s ease;}
-@keyframes iconShake{0%,100%{transform:rotate(0);}20%{transform:rotate(-8deg);}40%{transform:rotate(8deg);}60%{transform:rotate(-5deg);}80%{transform:rotate(5deg);}}
-.blocked-box h2{font-family:var(--font-h);font-size:1.5rem;color:var(--coral);margin-bottom:10px;}
-.blocked-box p{color:var(--text-mid);font-size:0.88rem;line-height:1.7;margin-bottom:26px;}
+@keyframes bounceIn{from{opacity:0;transform:scale(0.8);}to{opacity:1;transform:scale(1);}}
+.blocked-icon{font-size:4rem;display:block;margin-bottom:16px;animation:floatFace 2s ease-in-out infinite;}
+.blocked-box h2{font-family:var(--font-h);font-size:1.6rem;font-weight:900;margin-bottom:10px;color:var(--text-bright);}
+.blocked-box p{font-size:0.88rem;color:var(--text-mid);line-height:1.6;margin-bottom:24px;}
+.blocked-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.break-btn{
+  display:inline-flex;align-items:center;gap:8px;padding:12px 24px;
+  background:linear-gradient(135deg,var(--green),#059669);border:none;border-radius:99px;
+  color:#fff;font-family:var(--font-b);font-size:0.9rem;font-weight:700;cursor:pointer;
+  box-shadow:0 4px 20px rgba(16,185,129,0.35);transition:all var(--trans);
+}
+.break-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(16,185,129,0.45);}
 .req-btn{
-  background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.25);
-  color:var(--amber);padding:11px 26px;border-radius:99px;
-  font-family:var(--font-b);font-size:0.88rem;cursor:pointer;transition:var(--trans);
+  display:inline-flex;align-items:center;gap:8px;padding:12px 24px;
+  background:rgba(99,102,241,0.12);border:1px solid rgba(99,102,241,0.25);border-radius:99px;
+  color:var(--indigo2);font-family:var(--font-b);font-size:0.9rem;font-weight:700;cursor:pointer;transition:all var(--trans);
 }
-.req-btn:hover{background:rgba(245,158,11,0.2);box-shadow:0 0 18px rgba(245,158,11,0.15);}
+.req-btn:hover{background:rgba(99,102,241,0.22);}
 .cd-ring{
-  width:72px;height:72px;border-radius:50%;
-  border:3px solid var(--amber);display:flex;align-items:center;justify-content:center;
-  margin:0 auto 14px;box-shadow:0 0 18px rgba(245,158,11,0.3);
-  animation:cdPulse 1s infinite;
+  width:80px;height:80px;border-radius:50%;margin:0 auto 16px;
+  background:linear-gradient(135deg,rgba(99,102,241,0.2),rgba(167,139,250,0.1));
+  border:3px solid rgba(99,102,241,0.4);display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-h);font-size:2.2rem;font-weight:900;color:var(--indigo2);
+  animation:breathe 1s ease-in-out infinite;
 }
-@keyframes cdPulse{0%,100%{box-shadow:0 0 18px rgba(245,158,11,0.3);}50%{box-shadow:0 0 35px rgba(245,158,11,0.55);}}
-#cdNum{font-family:var(--font-h);font-size:1.9rem;font-weight:700;color:var(--amber);}
-.tmp-icon{font-size:2.8rem;margin-bottom:10px;}
+.tmp-icon{font-size:3rem;margin-bottom:12px;}
 .go-btn{
-  background:linear-gradient(135deg,var(--amber),var(--coral));
-  border:none;color:#1c0a00;padding:12px 30px;border-radius:99px;
-  font-family:var(--font-b);font-size:0.92rem;font-weight:700;
-  cursor:pointer;transition:var(--trans);box-shadow:0 4px 18px rgba(245,158,11,0.3);margin-top:14px;
+  padding:12px 32px;background:linear-gradient(135deg,var(--indigo),var(--violet));
+  border:none;border-radius:99px;color:#fff;font-family:var(--font-b);font-size:0.9rem;font-weight:700;
+  cursor:pointer;box-shadow:0 4px 20px rgba(99,102,241,0.4);transition:all var(--trans);margin-top:8px;
 }
-.go-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(245,158,11,0.4);}
+.go-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(99,102,241,0.5);}
+/* PIN unlock in blocked overlay */
+.pin-unlock-section{margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.06);}
+.pin-unlock-section p{font-size:0.78rem;color:var(--text-dim);margin-bottom:10px;}
+.pin-row{display:flex;gap:8px;justify-content:center;}
+.pin-row input{width:120px;text-align:center;background:rgba(255,255,255,0.05);border:1px solid rgba(99,102,241,0.2);border-radius:10px;padding:8px;color:var(--text-bright);font-family:var(--font-mono);font-size:1.1rem;letter-spacing:6px;outline:none;}
+.pin-row input:focus{border-color:rgba(99,102,241,0.5);}
 
-/* ═══ FACE LOCK OVERLAY ════════════════════ */
+/* ═══ FACE LOCK OVERLAY ══════════════════════ */
 .face-lock-ov{
-  position:fixed;inset:0;background:rgba(4,2,0,0.98);
-  backdrop-filter:blur(24px) saturate(0.2);
-  z-index:9999;display:flex;align-items:center;justify-content:center;
+  position:fixed;inset:0;z-index:400;
+  background:rgba(7,9,15,0.98);backdrop-filter:blur(24px);
+  display:flex;align-items:center;justify-content:center;
   animation:fadeIn 0.3s ease;
 }
-.face-lock-box{
-  display:flex;flex-direction:column;align-items:center;gap:18px;
-  text-align:center;max-width:400px;width:92%;
-}
-
-/* Particles */
 .particles{position:absolute;inset:0;overflow:hidden;pointer-events:none;}
 .particles span{
-  position:absolute;width:2px;height:2px;background:var(--amber);
-  border-radius:50%;opacity:0;animation:floatParticle linear infinite;
+  position:absolute;border-radius:50%;
+  background:radial-gradient(circle,rgba(99,102,241,0.4),transparent);
+  animation:floatParticle 8s ease-in-out infinite;
 }
-.particles span:nth-child(1){left:8%;animation-duration:8s;animation-delay:0s;}
-.particles span:nth-child(2){left:22%;animation-duration:13s;animation-delay:2s;}
-.particles span:nth-child(3){left:38%;animation-duration:9s;animation-delay:1s;}
-.particles span:nth-child(4){left:55%;animation-duration:11s;animation-delay:3s;}
-.particles span:nth-child(5){left:72%;animation-duration:7s;animation-delay:0.5s;}
-.particles span:nth-child(6){left:88%;animation-duration:14s;animation-delay:4s;}
-@keyframes floatParticle{0%{transform:translateY(100vh);opacity:0;}10%{opacity:0.35;}90%{opacity:0.35;}100%{transform:translateY(-40px);opacity:0;}}
-
-.fl-lock-icon{font-size:46px;animation:lockPulse 2s infinite;}
-@keyframes lockPulse{0%,100%{filter:drop-shadow(0 0 16px rgba(245,158,11,0.6));}50%{filter:drop-shadow(0 0 30px rgba(249,115,22,0.9));}}
-.fl-title{font-family:var(--font-h);font-size:1.7rem;font-weight:700;color:var(--text);}
-.fl-reason{
-  font-size:0.82rem;color:var(--text-mid);
-  background:rgba(249,115,22,0.08);border:1px solid rgba(249,115,22,0.2);
-  padding:5px 14px;border-radius:99px;font-weight:500;
+.particles span:nth-child(1){width:300px;height:300px;top:-100px;left:-100px;animation-delay:0s;}
+.particles span:nth-child(2){width:200px;height:200px;bottom:-80px;right:-60px;animation-delay:-3s;background:radial-gradient(circle,rgba(236,72,153,0.3),transparent);}
+.particles span:nth-child(3){width:180px;height:180px;top:40%;right:10%;animation-delay:-6s;background:radial-gradient(circle,rgba(34,211,238,0.25),transparent);}
+@keyframes floatParticle{0%,100%{transform:translate(0,0);}33%{transform:translate(30px,-20px);}66%{transform:translate(-20px,30px);}}
+.fl-box{
+  background:var(--bg2);border:1px solid rgba(99,102,241,0.2);border-radius:var(--r-xl);
+  padding:36px 32px;max-width:400px;width:90%;text-align:center;position:relative;z-index:1;
+  box-shadow:0 0 80px rgba(99,102,241,0.15),0 24px 64px rgba(0,0,0,0.7);
+  animation:bounceIn 0.4s cubic-bezier(.34,1.56,.64,1);
 }
-.fl-cam{
-  position:relative;width:240px;height:180px;border-radius:14px;overflow:hidden;
-  border:2px solid rgba(245,158,11,0.4);box-shadow:0 0 26px rgba(245,158,11,0.12);
-  background:#000;
-}
+.fl-title{font-family:var(--font-h);font-size:1.4rem;font-weight:900;margin-bottom:6px;color:var(--text-bright);}
+.fl-sub{font-size:0.84rem;color:var(--text-mid);margin-bottom:24px;line-height:1.5;}
+.fl-cam{width:220px;height:165px;border-radius:16px;overflow:hidden;margin:0 auto 16px;position:relative;border:2px solid rgba(99,102,241,0.4);box-shadow:0 0 36px rgba(99,102,241,0.15),0 16px 48px rgba(0,0,0,0.6);background:#000;}
 .fl-cam video{width:100%;height:100%;object-fit:cover;display:block;}
-.scan-line{
-  position:absolute;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,transparent,var(--amber2),transparent);
-  box-shadow:0 0 8px var(--amber);animation:scanMove 2s linear infinite;
-}
+.scan-line{position:absolute;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--indigo2),transparent);box-shadow:0 0 10px var(--indigo);animation:scanMove 2s linear infinite;}
 @keyframes scanMove{0%{top:0;opacity:0;}5%{opacity:1;}95%{opacity:1;}100%{top:100%;opacity:0;}}
-.scan-corners i{position:absolute;width:14px;height:14px;border-color:var(--amber);border-style:solid;}
-.scan-corners i:nth-child(1){top:5px;left:5px;border-width:2px 0 0 2px;}
-.scan-corners i:nth-child(2){top:5px;right:5px;border-width:2px 2px 0 0;}
-.scan-corners i:nth-child(3){bottom:5px;left:5px;border-width:0 0 2px 2px;}
-.scan-corners i:nth-child(4){bottom:5px;right:5px;border-width:0 2px 2px 0;}
-
-.fl-status{display:flex;align-items:center;gap:8px;font-size:0.82rem;color:var(--text-mid);}
-.fl-spin{width:14px;height:14px;border:2px solid var(--card-b);border-top-color:var(--amber);border-radius:50%;animation:spin 0.65s linear infinite;flex-shrink:0;}
+.scan-corners i{position:absolute;width:14px;height:14px;border-color:var(--indigo2);border-style:solid;}
+.scan-corners i:nth-child(1){top:6px;left:6px;border-width:2px 0 0 2px;}
+.scan-corners i:nth-child(2){top:6px;right:6px;border-width:2px 2px 0 0;}
+.scan-corners i:nth-child(3){bottom:6px;left:6px;border-width:0 0 2px 2px;}
+.scan-corners i:nth-child(4){bottom:6px;right:6px;border-width:0 2px 2px 0;}
+.fl-status{display:flex;align-items:center;gap:8px;font-size:0.82rem;color:var(--text-mid);font-family:var(--font-mono);justify-content:center;margin-bottom:12px;}
+.fl-spin{width:14px;height:14px;border:2px solid var(--card-b);border-top-color:var(--indigo);border-radius:50%;animation:spin 0.65s linear infinite;flex-shrink:0;}
 @keyframes spin{to{transform:rotate(360deg);}}
-.fl-attempts{font-size:0.75rem;color:var(--text-dim);}
-.fl-error{
-  background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.3);
-  color:var(--coral2);padding:9px 18px;border-radius:10px;font-size:0.82rem;
-  animation:shake 0.4s ease;
-}
+.fl-attempts{font-size:0.75rem;color:var(--text-dim);font-family:var(--font-mono);margin-bottom:12px;}
+.fl-error{background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.3);color:var(--red);padding:9px 20px;border-radius:12px;font-size:0.82rem;animation:shake 0.4s ease;}
 @keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-7px);}75%{transform:translateX(7px);}}
+.fl-pin-section{margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.06);}
+.fl-pin-section p{font-size:0.77rem;color:var(--text-dim);margin-bottom:8px;}
 
-/* ═══ SUCCESS FLASH ════════════════════════ */
-.success-flash{
-  position:fixed;inset:0;z-index:99999;
-  background:rgba(16,185,129,0.1);
-  display:flex;align-items:center;justify-content:center;
-  pointer-events:none;animation:fadeIn 0.2s ease;
-}
-.sf-card{
-  background:rgba(16,185,129,0.88);border-radius:20px;
-  padding:26px 44px;text-align:center;border:1px solid var(--green);
-}
-.sf-card div{font-size:48px;margin-bottom:10px;}
-.sf-card p{font-size:1.1rem;font-weight:700;color:#fff;font-family:var(--font-h);}
+/* ═══ SUCCESS FLASH ══════════════════════════ */
+.success-flash{position:fixed;inset:0;z-index:99999;background:rgba(16,185,129,0.07);display:flex;align-items:center;justify-content:center;pointer-events:none;animation:fadeIn 0.2s ease;}
+.sf-card{background:linear-gradient(135deg,rgba(16,185,129,0.92),rgba(5,150,105,0.88));border-radius:24px;padding:30px 52px;text-align:center;border:1px solid rgba(16,185,129,0.6);box-shadow:0 0 60px rgba(16,185,129,0.25),0 24px 64px rgba(0,0,0,0.5);animation:bounceIn 0.45s cubic-bezier(.34,1.56,.64,1);}
+.sf-card div{font-size:54px;margin-bottom:12px;}
+.sf-card p{font-size:1.15rem;font-weight:700;color:#fff;font-family:var(--font-h);}
 
-/* ═══ RESPONSIVE ═══════════════════════════ */
+/* ═══ SECTION DIVIDER ═══════════════════════ */
+.section-divider{display:flex;align-items:center;gap:14px;margin:20px 0 14px;color:var(--text-dim);font-size:0.7rem;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:1.2px;}
+.section-divider::before,.section-divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(99,102,241,0.15),transparent);}
+
+/* ═══ MOBILE NAV ═════════════════════════════ */
+.mob-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(7,9,15,0.97);backdrop-filter:blur(24px) saturate(1.8);border-top:1px solid rgba(99,102,241,0.1);z-index:150;justify-content:space-around;padding:10px 0 max(env(safe-area-inset-bottom),10px);box-shadow:0 -4px 32px rgba(0,0,0,0.4);}
+.mob-btn{background:none;border:none;color:var(--text-mid);font-size:0.68rem;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px;padding:4px 12px;transition:all var(--trans);font-family:var(--font-b);position:relative;}
+.mob-btn span{font-size:1.3rem;display:block;transition:transform 0.2s ease;}
+.mob-btn:hover span{transform:translateY(-2px);}
+.mob-btn.active{color:var(--indigo2);}
+.mob-btn.active span{filter:drop-shadow(0 0 6px rgba(99,102,241,0.5));}
+.mob-btn.active::after{content:'';position:absolute;bottom:-2px;left:50%;transform:translateX(-50%);width:4px;height:4px;border-radius:50%;background:var(--indigo);}
+
+/* ═══ RESPONSIVE ══════════════════════════════ */
 @media(max-width:680px){
-  .hdr{padding:0 14px;}
+  .hdr{padding:0 14px;height:60px;}
   .hdr-nav{display:none;}
-  main{padding:20px 14px 100px;}
+  main{padding:24px 14px 110px;}
   .stats-row{grid-template-columns:1fr 1fr;}
-  .stats-row > .stat-card:last-child{display:none;}
   .apps-grid{grid-template-columns:1fr 1fr;}
   .analytics-grid{grid-template-columns:1fr;}
   .a-card.full{grid-column:auto;}
   .parent-grid{grid-template-columns:1fr;}
-  .pg-title{font-size:1.5rem;}
+  .mh-cards{grid-template-columns:1fr 1fr;}
+  .pg-title{font-size:1.6rem;}
   .mob-nav{display:flex!important;}
+  .blocked-actions{flex-direction:column;}
+  .stat-val{font-size:1.5rem;}
 }
-.mob-nav{
-  display:none;position:fixed;bottom:0;left:0;right:0;
-  background:rgba(14,10,6,0.96);backdrop-filter:blur(20px);
-  border-top:1px solid rgba(245,158,11,0.1);z-index:150;
-  justify-content:space-around;padding:8px 0;
-}
-.mob-btn{
-  background:none;border:none;color:var(--text-mid);font-size:0.68rem;
-  cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;
-  padding:4px 10px;transition:var(--trans);font-family:var(--font-b);
-}
-.mob-btn span{font-size:1.2rem;}
-.mob-btn.active{color:var(--amber);}
-
-/* ═══ AVATAR ALERT CARD ════════════════════ */
-.avatar-card{
-  display:flex;align-items:center;gap:18px;
-  background:var(--card);border:1px solid var(--card-b);border-radius:var(--r);
-  padding:18px 20px;margin-bottom:16px;
-  transition:border-color 0.4s,background 0.4s;
-  overflow:hidden;position:relative;
-}
-.avatar-card.av-warn{border-color:rgba(249,115,22,0.4);background:rgba(249,115,22,0.04);}
-.avatar-card.av-danger{border-color:rgba(239,68,68,0.5);background:rgba(239,68,68,0.05);}
-.av-body-wrap{position:relative;flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:5px;}
-.av-glow{position:absolute;inset:-8px;border-radius:50%;background:radial-gradient(circle,rgba(245,158,11,0.25),transparent 70%);transition:background 0.5s;pointer-events:none;}
-.av-glow.warn{background:radial-gradient(circle,rgba(249,115,22,0.35),transparent 70%);}
-.av-glow.danger{background:radial-gradient(circle,rgba(239,68,68,0.4),transparent 70%);animation:dangerGlow 1s ease infinite alternate;}
-@keyframes dangerGlow{from{opacity:0.6;}to{opacity:1;}}
-.av-body{
-  width:70px;height:70px;border-radius:50%;
-  background:linear-gradient(135deg,rgba(245,158,11,0.18),rgba(249,115,22,0.1));
-  border:2.5px solid rgba(245,158,11,0.3);
-  display:flex;align-items:center;justify-content:center;
-  animation:avFloat 3.5s ease-in-out infinite;
-  transition:border-color 0.4s,background 0.4s;position:relative;z-index:1;
-}
-.av-body.warn{border-color:rgba(249,115,22,0.5);background:linear-gradient(135deg,rgba(249,115,22,0.2),rgba(245,158,11,0.1));}
-.av-body.danger{border-color:rgba(239,68,68,0.6);background:linear-gradient(135deg,rgba(239,68,68,0.22),rgba(249,115,22,0.1));animation:avShake 0.5s ease infinite;}
-@keyframes avFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
-@keyframes avShake{0%,100%{transform:translateX(0);}25%{transform:translateX(-3px);}75%{transform:translateX(3px);}}
-.av-face{display:flex;flex-direction:column;align-items:center;gap:5px;}
-.av-eyes{display:flex;gap:10px;}
-.av-eye{width:14px;height:14px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;overflow:hidden;}
-.av-pupil{width:7px;height:7px;border-radius:50%;background:#1c0a00;transition:transform 0.15s;}
-.av-mouth{width:20px;height:8px;border-radius:0 0 10px 10px;border:2px solid rgba(255,255,255,0.85);border-top:none;transition:all 0.4s;}
-.av-mouth.neutral{border-radius:10px;height:4px;border-top:2px solid rgba(255,255,255,0.85);}
-.av-mouth.frown{border-radius:10px 10px 0 0;border-top:2px solid rgba(255,255,255,0.85);border-bottom:none;}
-.av-name{font-size:0.68rem;color:var(--text-mid);font-weight:600;letter-spacing:0.5px;text-transform:uppercase;}
-.av-bubble-wrap{flex:1;display:flex;flex-direction:column;gap:10px;}
-.av-bubble{
-  display:flex;align-items:flex-start;gap:12px;
-  background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);
-  border-radius:14px 14px 14px 4px;padding:13px 16px;
-  transition:border-color 0.4s,background 0.4s;position:relative;
-}
-.av-bubble::before{content:'';position:absolute;left:-8px;top:14px;width:0;height:0;border-top:7px solid transparent;border-bottom:7px solid transparent;border-right:8px solid rgba(255,255,255,0.07);}
-.av-bubble.warn{border-color:rgba(249,115,22,0.3);background:rgba(249,115,22,0.06);}
-.av-bubble.warn::before{border-right-color:rgba(249,115,22,0.3);}
-.av-bubble.danger{border-color:rgba(239,68,68,0.4);background:rgba(239,68,68,0.07);animation:bubblePulse 1.2s ease infinite;}
-.av-bubble.danger::before{border-right-color:rgba(239,68,68,0.4);}
-@keyframes bubblePulse{0%,100%{box-shadow:0 0 0 rgba(239,68,68,0);}50%{box-shadow:0 0 14px rgba(239,68,68,0.2);}}
-.av-bubble-icon{font-size:1.5rem;flex-shrink:0;line-height:1;transition:transform 0.3s;}
-.av-bubble-title{font-family:var(--font-h);font-size:0.9rem;font-weight:700;color:var(--text);margin-bottom:3px;}
-.av-bubble-msg{font-size:0.82rem;color:var(--text-mid);line-height:1.5;}
-.av-alert-bar{
-  display:flex;align-items:center;gap:8px;font-size:0.75rem;color:var(--text-mid);
-  padding:6px 12px;border-radius:99px;
-  background:rgba(255,255,255,0.03);border:1px solid var(--card-b);
-  transition:all 0.4s;width:fit-content;
-}
-.av-alert-bar.warn{background:rgba(249,115,22,0.08);border-color:rgba(249,115,22,0.25);color:#fdba74;}
-.av-alert-bar.danger{background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:#fca5a5;animation:barBlink 1s step-end infinite;}
-@keyframes barBlink{0%,100%{opacity:1;}50%{opacity:0.5;}}
-.av-alert-dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green);flex-shrink:0;transition:all 0.4s;}
-.av-alert-dot.warn{background:var(--coral);box-shadow:0 0 6px var(--coral);}
-.av-alert-dot.danger{background:var(--coral2);box-shadow:0 0 8px var(--coral2);animation:dotPulse 0.7s ease infinite alternate;}
-@keyframes dotPulse{from{transform:scale(1);}to{transform:scale(1.6);}}
 </style>
 </head>
 <body>
 
-<!-- ══════════════ HEADER ═══════════════════════ -->
+<!-- ═══════════ HEADER ══════════════════════ -->
 <header class="hdr">
   <div class="logo">
     <div class="logo-icon">🛡️</div>
-    <span class="logo-text">MindGuard</span>
+    <div>
+      <span class="logo-text">MindGuard</span>
+      <div class="logo-tagline">Your Screen Buddy</div>
+    </div>
   </div>
   <nav class="hdr-nav">
-    <button class="nav-btn active" data-section="dashboard">Dashboard</button>
-    <button class="nav-btn" data-section="apps">Apps</button>
-    <button class="nav-btn" data-section="analytics">Analytics</button>
-    <button class="nav-btn" data-section="parent">Parent Control</button>
+    <button class="nav-btn active" data-section="dashboard">🏠 Home</button>
+    <button class="nav-btn" data-section="apps">📱 Apps</button>
+    <button class="nav-btn" data-section="analytics">📊 Stats</button>
+    <button class="nav-btn" data-section="parent">🔒 Guardian</button>
   </nav>
   <div class="hdr-right">
     <div class="lock-pill" id="lockPill" onclick="goToParent()">🔒 <span id="lockPillTxt">Set Up Lock</span></div>
@@ -582,119 +580,130 @@ input[type=range]::-webkit-slider-thumb{
   </div>
 </header>
 
-<!-- ══════════════ MAIN ══════════════════════════ -->
+<!-- ═══════════ MAIN ═════════════════════════ -->
 <main>
 
-  <!-- ─── DASHBOARD ─────────────────────────── -->
+  <!-- ─── DASHBOARD ──────────────────────── -->
   <section id="dashboard" class="section active">
     <div class="pg-head" style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px;">
       <div>
-        <h1 class="pg-title">Your <em>Focus</em> Today</h1>
-        <p class="pg-sub">Track your screen time and reclaim your attention</p>
+        <h1 class="pg-title">Your <em>Screen Day</em></h1>
+        <p class="pg-sub">Track time · Stay in the zone · Earn freedom</p>
       </div>
-      <button class="btn btn-ghost" id="resetBtn">↺ Reset Day</button>
+      <button class="btn btn-ghost" id="resetBtn" style="margin-top:6px;">↺ Reset Day</button>
     </div>
 
-    <!-- Stats -->
+    <!-- Welcome / Avatar banner -->
+    <div class="welcome-banner" id="welcomeBanner">
+      <div class="welcome-avatar" id="welcomeAvatar">😊</div>
+      <div class="welcome-text" style="flex:1;">
+        <h2 id="welcomeMsg">Hey! You're doing great today 🌟</h2>
+        <p id="welcomeSub">Your screen time is looking healthy. Keep it up!</p>
+        <div class="xp-bar-wrap">
+          <div class="xp-label"><span>🏆 Focus XP</span><span id="xpVal">0 / 100 XP</span></div>
+          <div class="xp-track"><div class="xp-fill" id="xpFill" style="width:0%"></div></div>
+        </div>
+      </div>
+    </div>
+
     <div class="stats-row">
       <div class="stat-card accent">
         <div class="stat-icon">⏱️</div>
         <div class="stat-val" id="usedDisp">0s</div>
         <div class="stat-lbl">Time Used</div>
       </div>
-      <div class="stat-card">
+      <div class="stat-card" style="--accent-grad:linear-gradient(90deg,var(--cyan),var(--indigo))">
         <div class="stat-icon">⚡</div>
-        <div class="stat-val" id="remainDisp">60s</div>
+        <div class="stat-val" id="remainDisp">2h</div>
         <div class="stat-lbl">Remaining</div>
       </div>
-      <div class="stat-card">
+      <div class="stat-card" style="--accent-grad:linear-gradient(90deg,var(--pink),var(--violet))">
         <div class="stat-icon">🚫</div>
         <div class="stat-val" id="bypassDisp">0</div>
-        <div class="stat-lbl">Bypass Attempts</div>
+        <div class="stat-lbl">Bypass Tries</div>
       </div>
-      <div class="stat-card">
-        <div class="stat-icon">🔒</div>
-        <div class="stat-val" id="lockCountDisp">0</div>
-        <div class="stat-lbl">Lock Triggers</div>
+      <div class="stat-card" style="--accent-grad:linear-gradient(90deg,var(--green),var(--cyan))">
+        <div class="stat-icon">🌟</div>
+        <div class="stat-val" id="focusScoreDash">100</div>
+        <div class="stat-lbl">Focus Score</div>
       </div>
     </div>
 
-    <!-- Progress bar -->
     <div class="progress-card">
       <div class="progress-top">
         <h3>Daily Screen Limit Progress</h3>
         <span class="progress-pct" id="progressPct">0%</span>
       </div>
       <div class="track">
-        <div class="track-fill" id="trackFill"></div>
+        <div class="track-fill" id="trackFill" style="width:0%"></div>
         <div class="track-marker" style="left:50%"></div>
         <div class="track-marker dm" style="left:80%"></div>
       </div>
       <div class="track-labels">
-        <span>0</span><span>⚠️ 50%</span><span>🔴 80%</span><span id="limitLblTrack">60s</span>
+        <span>0</span><span>⚠️ 50%</span><span>🔴 80%</span><span id="limitLblTrack">2h</span>
       </div>
     </div>
 
-    <!-- ── AVATAR ALERT SYSTEM ── -->
-    <div class="avatar-card" id="avatarCard">
-      <div class="av-body-wrap">
-        <div class="av-glow" id="avGlow"></div>
-        <div class="av-body" id="avBody">
-          <div class="av-face" id="avFace">
-            <div class="av-eyes">
-              <div class="av-eye" id="eyeL"><div class="av-pupil"></div></div>
-              <div class="av-eye" id="eyeR"><div class="av-pupil"></div></div>
-            </div>
-            <div class="av-mouth" id="avMouth"></div>
-          </div>
-        </div>
-        <div class="av-name">MindBot</div>
-      </div>
-      <div class="av-bubble-wrap">
-        <div class="av-bubble" id="avBubble">
-          <div class="av-bubble-icon" id="avBubbleIcon">👋</div>
-          <div class="av-bubble-text">
-            <div class="av-bubble-title" id="avBubbleTitle">Hey there!</div>
-            <div class="av-bubble-msg" id="avBubbleMsg">I'll keep an eye on your screen time today. Stay mindful!</div>
-          </div>
-        </div>
-        <div class="av-alert-bar" id="avAlertBar">
-          <span class="av-alert-dot" id="avAlertDot"></span>
-          <span id="avAlertTxt">All good — no alerts</span>
-        </div>
+    <div class="mood-row" id="moodRow">
+      <div class="mood-face" id="moodFace">😊</div>
+      <div class="mood-text">
+        <h4 id="moodTitle">Feeling Fresh</h4>
+        <p id="moodSub">You're doing great! Screen time is under control.</p>
       </div>
     </div>
 
-    <!-- Limit setter -->
     <div class="limit-row">
       <div class="limit-info">
-        <h4>Daily Limit</h4>
-        <p>Adjust how long you allow yourself per day</p>
+        <h4>Daily Screen Limit</h4>
+        <p>Slide to set your daily limit (in minutes)</p>
       </div>
       <div class="limit-ctrl">
-        <input type="range" id="limitSlider" min="30" max="300" value="60" step="10"/>
-        <span class="limit-val" id="limitVal">60s</span>
+        <input type="range" id="limitSlider" min="30" max="480" value="120" step="10"/>
+        <span class="limit-val" id="limitVal">2h</span>
+      </div>
+    </div>
+
+    <!-- Mental Health Quick Access -->
+    <div class="section-divider">Mind & Wellness</div>
+    <div class="mh-section">
+      <div class="mh-header">🧠 Wellbeing Tools</div>
+      <div class="mh-cards">
+        <div class="mh-card" onclick="openMH('breathe')" style="--mh-grad:linear-gradient(90deg,var(--indigo),var(--cyan))">
+          <span class="mh-emoji">🫁</span>
+          <div class="mh-title">Breathe</div>
+          <div class="mh-sub">Quick 1-min breathing exercise</div>
+        </div>
+        <div class="mh-card" onclick="openMH('mood')" style="--mh-grad:linear-gradient(90deg,var(--pink),var(--violet))">
+          <span class="mh-emoji">💭</span>
+          <div class="mh-title">Check-In</div>
+          <div class="mh-sub">How are you really feeling?</div>
+        </div>
+        <div class="mh-card" onclick="openMH('tips')" style="--mh-grad:linear-gradient(90deg,var(--green),var(--cyan))">
+          <span class="mh-emoji">🌿</span>
+          <div class="mh-title">Chill Tips</div>
+          <div class="mh-sub">Break ideas & eye care</div>
+        </div>
       </div>
     </div>
 
     <div class="reward-banner hidden" id="rewardBanner">
-      🌟 <strong>Well done!</strong> You stayed within your screen limit today. Your focus score is growing!
+      🌟 <strong>Well done!</strong> You stayed within your limit today! Your focus XP is growing!
     </div>
   </section>
 
-  <!-- ─── APPS ───────────────────────────── -->
+  <!-- ─── APPS ─────────────────────────── -->
   <section id="apps" class="section">
     <div class="pg-head">
       <h1 class="pg-title">Your <em>Apps</em></h1>
-      <p class="pg-sub">Tap to open. Apps grey out when you've hit your limit.</p>
+      <p class="pg-sub">Tap to open. Apps grey out when your limit's hit.</p>
     </div>
     <div class="apps-grid">
-      <div class="app-card" data-app="Instagram" data-emoji="📸"><div class="app-emoji">📸</div><div class="app-name">Instagram</div><div class="app-badge" id="badge-Instagram">0 opens</div></div>
-      <div class="app-card" data-app="YouTube" data-emoji="▶️"><div class="app-emoji">▶️</div><div class="app-name">YouTube</div><div class="app-badge" id="badge-YouTube">0 opens</div></div>
-      <div class="app-card" data-app="Snapchat" data-emoji="👻"><div class="app-emoji">👻</div><div class="app-name">Snapchat</div><div class="app-badge" id="badge-Snapchat">0 opens</div></div>
-      <div class="app-card" data-app="Twitter" data-emoji="🐦"><div class="app-emoji">🐦</div><div class="app-name">Twitter</div><div class="app-badge" id="badge-Twitter">0 opens</div></div>
-      <div class="app-card" data-app="TikTok" data-emoji="🎵"><div class="app-emoji">🎵</div><div class="app-name">TikTok</div><div class="app-badge" id="badge-TikTok">0 opens</div></div>
-      <div class="app-card" data-app="Reddit" data-emoji="🤖"><div class="app-emoji">🤖</div><div class="app-name">Reddit</div><div class="app-badge" id="badge-Reddit">0 opens</div></div>
+      <div class="app-card" data-app="Instagram" data-emoji="📸"><div class="app-emoji">📸</div><div class="app-name">Instagram</div><div class="app-badge" id="badge-Instagram">0 opens</div><span class="app-time" id="time-Instagram">0s today</span></div>
+      <div class="app-card" data-app="YouTube" data-emoji="▶️"><div class="app-emoji">▶️</div><div class="app-name">YouTube</div><div class="app-badge" id="badge-YouTube">0 opens</div><span class="app-time" id="time-YouTube">0s today</span></div>
+      <div class="app-card" data-app="Snapchat" data-emoji="👻"><div class="app-emoji">👻</div><div class="app-name">Snapchat</div><div class="app-badge" id="badge-Snapchat">0 opens</div><span class="app-time" id="time-Snapchat">0s today</span></div>
+      <div class="app-card" data-app="Twitter" data-emoji="🐦"><div class="app-emoji">🐦</div><div class="app-name">Twitter</div><div class="app-badge" id="badge-Twitter">0 opens</div><span class="app-time" id="time-Twitter">0s today</span></div>
+      <div class="app-card" data-app="TikTok" data-emoji="🎵"><div class="app-emoji">🎵</div><div class="app-name">TikTok</div><div class="app-badge" id="badge-TikTok">0 opens</div><span class="app-time" id="time-TikTok">0s today</span></div>
+      <div class="app-card" data-app="Reddit" data-emoji="🤖"><div class="app-emoji">🤖</div><div class="app-name">Reddit</div><div class="app-badge" id="badge-Reddit">0 opens</div><span class="app-time" id="time-Reddit">0s today</span></div>
     </div>
     <div class="app-open hidden" id="appOpenScreen">
       <div class="app-open-inner">
@@ -707,11 +716,11 @@ input[type=range]::-webkit-slider-thumb{
     </div>
   </section>
 
-  <!-- ─── ANALYTICS ─────────────────────── -->
+  <!-- ─── ANALYTICS ────────────────────── -->
   <section id="analytics" class="section">
     <div class="pg-head">
       <h1 class="pg-title">Usage <em>Analytics</em></h1>
-      <p class="pg-sub">Understand your patterns. Break the cycle.</p>
+      <p class="pg-sub">Understand your patterns. Take back control.</p>
     </div>
     <div class="analytics-grid">
       <div class="a-card full">
@@ -732,7 +741,7 @@ input[type=range]::-webkit-slider-thumb{
         <h3>🎯 Focus Score</h3>
         <div class="ring-wrap">
           <svg class="fring" viewBox="0 0 120 120">
-            <defs><linearGradient id="rg" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#f97316"/></linearGradient></defs>
+            <defs><linearGradient id="rg" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#6366f1"/><stop offset="100%" stop-color="#a78bfa"/></linearGradient></defs>
             <circle class="ring-bg" cx="60" cy="60" r="50"/>
             <circle class="ring-fill" id="ringFill" cx="60" cy="60" r="50" stroke-dasharray="314" stroke-dashoffset="314"/>
           </svg>
@@ -741,23 +750,37 @@ input[type=range]::-webkit-slider-thumb{
         <p class="focus-lbl" id="focusLbl">Excellent! Keep it up 🌟</p>
       </div>
     </div>
+    <!-- Alert History -->
+    <div class="alert-history">
+      <h3>🔔 Alert History</h3>
+      <div class="alert-list" id="alertList">
+        <div class="alert-empty">No alerts yet today — you're doing great!</div>
+      </div>
+    </div>
   </section>
 
-  <!-- ─── PARENT CONTROL ─────────────────── -->
+  <!-- ─── GUARDIAN (PARENT) ─────────────── -->
   <section id="parent" class="section">
     <div class="pg-head">
-      <h1 class="pg-title"><em>Parent</em> Control</h1>
-      <p class="pg-sub">Register your face to lock the screen when limits are hit</p>
+      <h1 class="pg-title"><em>Guardian</em> Controls</h1>
+      <p class="pg-sub">Set up screen lock & notifications for peace of mind</p>
     </div>
-    <div class="parent-grid">
 
-      <!-- Registration card -->
+    <!-- How it works info box -->
+    <div class="parent-msg" style="margin-bottom:18px;">
+      <div class="pm-row"><span class="pm-icon">👆</span><div><strong>Hey parent/guardian!</strong> This is your section. Register your face <em>or</em> set a PIN — when your kid hits the screen limit, MindGuard locks the device and only you can unlock it.</div></div>
+      <div class="pm-row"><span class="pm-icon">📱</span><div>Your child sees a friendly "take a break" message — not a scary red screen. It's supportive, not punitive.</div></div>
+      <div class="pm-row"><span class="pm-icon">📋</span><div>You get a <strong>full report</strong> of screen time, which apps were used most, and how many times they tried to bypass.</div></div>
+    </div>
+
+    <div class="parent-grid">
+      <!-- Registration -->
       <div class="p-card">
         <div>
           <h3>👤 Face Registration</h3>
-          <p>Register your face once. MindGuard will require it to unlock the screen.</p>
+          <p>Register your face once. MindGuard will require it to unlock when the daily limit is exceeded.</p>
         </div>
-        <div class="reg-status" id="regStatus"><span class="reg-dot"></span><span id="regStatusTxt">Not Registered</span></div>
+        <div class="reg-status" id="regStatus"><span class="reg-dot" id="regDot"></span><span id="regStatusTxt">Not Registered</span></div>
         <div class="cam-wrap" id="regCamWrap">
           <video id="regVideo" autoplay muted playsinline></video>
           <div class="cam-placeholder" id="regPlaceholder"><div class="ci">📷</div><p>Camera opens here</p></div>
@@ -765,7 +788,7 @@ input[type=range]::-webkit-slider-thumb{
         </div>
         <div class="mdl-progress" id="mdlProgress">
           <div class="mdl-track"><div class="mdl-fill" id="mdlFill"></div></div>
-          <span id="mdlTxt">Loading face AI...</span>
+          <span id="mdlTxt">Loading face AI…</span>
         </div>
         <div class="btn-row">
           <button class="btn btn-primary" id="startRegBtn" onclick="startReg()">📷 Open Camera</button>
@@ -773,13 +796,24 @@ input[type=range]::-webkit-slider-thumb{
           <button class="btn btn-ghost hidden" id="stopRegBtn" onclick="stopReg()">✕ Cancel</button>
         </div>
         <div class="p-alert" id="regAlert"></div>
+
+        <!-- PIN Alternative -->
+        <div class="pin-setup">
+          <h4>🔑 PIN Lock (Alternative)</h4>
+          <p>Set a 4-digit PIN your child doesn't know. This unlocks the screen instead of (or alongside) face ID.</p>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <input type="password" maxlength="4" class="pin-input" id="pinSetInput" placeholder="••••" style="flex:1;"/>
+            <button class="btn btn-primary" onclick="savePin()" style="flex-shrink:0;">Save PIN</button>
+          </div>
+          <div class="p-alert" id="pinAlert" style="margin-top:8px;"></div>
+        </div>
       </div>
 
-      <!-- Lock control card -->
+      <!-- Lock Controls -->
       <div class="p-card">
         <div>
           <h3>🛡️ Lock Controls</h3>
-          <p>Test the face lock or trigger it manually. In real use, it fires automatically at your screen limit.</p>
+          <p>Test the lock system, set notification preferences, and review activity.</p>
         </div>
         <div class="lock-stats">
           <div class="ls-item"><div class="ls-val" id="lsAttempts">0</div><div class="ls-lbl">Attempts</div></div>
@@ -790,203 +824,239 @@ input[type=range]::-webkit-slider-thumb{
           <button class="btn btn-primary btn-lg" onclick="triggerFaceLock('manual_test')">🔒 Test Face Lock</button>
           <button class="btn btn-ghost" onclick="triggerFaceLock('screen_limit_exceeded')">⏱️ Simulate: Limit Exceeded</button>
           <button class="btn btn-danger" onclick="resetParentFace()">🗑️ Reset Face Data</button>
+          <button class="btn btn-pink" onclick="sendTestAlert()">🔔 Send Test Alert</button>
         </div>
         <div class="p-alert" id="lockAlert"></div>
-      </div>
 
+        <!-- Notification settings -->
+        <div style="margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.06);">
+          <div style="font-family:var(--font-h);font-size:0.82rem;font-weight:800;color:var(--text-bright);margin-bottom:10px;">🔔 Alert Settings</div>
+          <label style="display:flex;align-items:center;gap:10px;font-size:0.8rem;color:var(--text-mid);cursor:pointer;margin-bottom:8px;">
+            <input type="checkbox" id="notif50" checked style="accent-color:var(--indigo);width:16px;height:16px;cursor:pointer;"/>
+            Alert at 50% screen time
+          </label>
+          <label style="display:flex;align-items:center;gap:10px;font-size:0.8rem;color:var(--text-mid);cursor:pointer;margin-bottom:8px;">
+            <input type="checkbox" id="notif80" checked style="accent-color:var(--indigo);width:16px;height:16px;cursor:pointer;"/>
+            Alert at 80% screen time
+          </label>
+          <label style="display:flex;align-items:center;gap:10px;font-size:0.8rem;color:var(--text-mid);cursor:pointer;">
+            <input type="checkbox" id="notif100" checked style="accent-color:var(--indigo);width:16px;height:16px;cursor:pointer;"/>
+            Alert + Lock at 100%
+          </label>
+        </div>
+      </div>
     </div>
   </section>
 
 </main>
 
-<!-- ══════════════ BLOCKED OVERLAY ══════════════ -->
+<!-- ═════════ BLOCKED OVERLAY ═══════════════ -->
 <div class="blocked-ov hidden" id="blockedOv">
   <div class="blocked-box">
-    <span class="blocked-icon">🚫</span>
-    <h2>Daily Limit Reached</h2>
-    <p>You've used all your screen time for today.<br/>Take a real break — your brain will thank you.</p>
+    <span class="blocked-icon" id="blockedIcon">😮</span>
+    <h2>Screen Break Time!</h2>
+    <p>You've used all your screen time for today.<br/>Your eyes and brain need a rest — you got this! 💪</p>
     <div id="reqSection">
-      <button class="req-btn" id="reqMoreBtn">Request 10 More Seconds</button>
+      <div class="blocked-actions">
+        <button class="break-btn" onclick="handleTakeBreak()">🌿 Take a Break</button>
+        <button class="req-btn" id="reqMoreBtn">⏳ Ask for More Time</button>
+      </div>
     </div>
     <div class="hidden" id="cdSection">
       <div class="cd-ring"><span id="cdNum">5</span></div>
-      <p style="font-size:0.85rem;color:var(--text-mid);">Think about it while you wait…</p>
+      <p style="font-size:0.85rem;color:var(--text-mid);margin-top:10px;">Think about it for a sec…</p>
     </div>
     <div class="hidden" id="tmpSection">
       <div class="tmp-icon">✅</div>
-      <p style="font-size:0.85rem;color:var(--text-mid);">10 seconds of temporary access granted.</p>
+      <p style="font-size:0.85rem;color:var(--text-mid);">10 seconds of extra time granted.</p>
       <button class="go-btn" id="goBtn">Continue →</button>
+    </div>
+    <!-- PIN unlock -->
+    <div class="pin-unlock-section">
+      <p>🔑 Have a parent PIN?</p>
+      <div class="pin-row">
+        <input type="password" maxlength="4" id="pinUnlockInput" placeholder="••••"/>
+        <button class="btn btn-primary" onclick="tryPinUnlock()">Unlock</button>
+      </div>
+      <div id="pinUnlockMsg" style="font-size:0.75rem;color:var(--red);margin-top:6px;"></div>
     </div>
   </div>
 </div>
 
-<!-- ══════════════ FACE LOCK OVERLAY ════════════ -->
+<!-- ═════════ FACE LOCK OVERLAY ══════════════ -->
 <div class="face-lock-ov hidden" id="faceLockOv">
   <div class="particles">
     <span></span><span></span><span></span>
-    <span></span><span></span><span></span>
   </div>
-  <div class="face-lock-box">
-    <div class="fl-lock-icon">🔒</div>
-    <h1 class="fl-title">Parental Verification</h1>
-    <div class="fl-reason" id="flReason">Screen time limit exceeded</div>
-    <div class="fl-cam" id="flCam">
-      <video id="verifyVideo" autoplay muted playsinline></video>
+  <div class="fl-box">
+    <div class="fl-title">🔒 Screen Locked</div>
+    <div class="fl-sub">Parent face scan required to continue.<br/>Time limit was reached!</div>
+    <div class="fl-cam" id="flFaceBox" style="display:none;">
+      <video id="verVideo" autoplay muted playsinline></video>
       <div class="scan-line"></div>
-      <div class="scan-corners"><i></i><i></i><i></i><i></i></div>
-      <div class="face-box-ov" id="flFaceBox"></div>
+      <div class="scan-corners">
+        <i></i><i></i><i></i><i></i>
+      </div>
     </div>
-    <div class="fl-status"><div class="fl-spin" id="flSpin"></div><span id="flStatusTxt">Initializing...</span></div>
-    <div class="fl-attempts">Attempts: <strong id="flAttempts">0</strong></div>
-    <button class="btn btn-primary" id="verifyBtn" onclick="captureVerify()" disabled>🔍 Verify Now</button>
-    <div class="fl-error hidden" id="flError">❌ Face not recognized. Try again.</div>
+    <div class="fl-status"><div class="fl-spin" id="flSpin" style="display:none;"></div><span id="flStatusTxt">Tap verify to scan</span></div>
+    <div class="fl-attempts hidden" id="flAttempts">Attempts: 0</div>
+    <div class="fl-error hidden" id="flError">Face not recognized. Try again.</div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:8px;">
+      <button class="btn btn-primary" id="verifyBtn" onclick="startVerify()" disabled>👁️ Scan Face</button>
+      <button class="btn btn-ghost" onclick="closeFaceLock()">✕ Close</button>
+    </div>
+    <!-- PIN alternative in face lock -->
+    <div class="fl-pin-section">
+      <p>Or use parent PIN to unlock:</p>
+      <div class="pin-row" style="margin-bottom:6px;">
+        <input type="password" maxlength="4" id="flPinInput" placeholder="••••"/>
+        <button class="btn btn-primary" onclick="tryFlPinUnlock()">Unlock</button>
+      </div>
+      <div id="flPinMsg" style="font-size:0.75rem;color:var(--red);"></div>
+    </div>
   </div>
 </div>
 
-<!-- ══════════════ SUCCESS FLASH ════════════════ -->
+<!-- ═════════ SUCCESS FLASH ══════════════════ -->
 <div class="success-flash hidden" id="successFlash">
-  <div class="sf-card"><div>✅</div><p>Access Granted</p></div>
+  <div class="sf-card">
+    <div>✅</div>
+    <p>Unlocked! Welcome back.</p>
+  </div>
 </div>
 
-<!-- Mobile bottom nav (injected by JS) -->
+<!-- ═════════ MH MODAL ═══════════════════════ -->
+<div class="mh-modal hidden" id="mhModal" onclick="closeMH(event)">
+  <div class="mh-modal-box" id="mhModalBox">
+    <!-- filled by JS -->
+  </div>
+</div>
 
+<!-- ═════════ AVATAR TOAST ═══════════════════ -->
+<div id="avatar-toast" style="position:fixed;bottom:24px;right:24px;z-index:500;display:flex;align-items:flex-end;gap:10px;pointer-events:none;transition:opacity 0.3s;opacity:0;">
+  <div id="toast-bubble" style="background:#0d1020;border:1px solid rgba(99,102,241,0.25);border-radius:14px 14px 4px 14px;padding:12px 16px;max-width:220px;font-size:0.83rem;line-height:1.5;color:#e2e8f0;box-shadow:0 4px 22px rgba(0,0,0,0.5);"></div>
+  <div id="toast-face" style="width:50px;height:50px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,rgba(99,102,241,0.2),rgba(236,72,153,0.1));border:2px solid rgba(99,102,241,0.3);display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 4px 18px rgba(99,102,241,0.25);"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
 <script>
-/* ══════════════════════════════════════════════════════
-   MINDGUARD — Integrated Digital Addiction Controller
-   Combines:
-     • Screen time tracking + limits (from mindguard-single.html)
-     • Avatar mood system (from screen_time_app.py)
-     • Parental face lock (from face lock system)
-     • Sound alerts (Web Audio API, mirrors winsound.Beep)
-     • Notification system (Notification API, mirrors ctypes toast)
-   ══════════════════════════════════════════════════════ */
-
-// ── Backend (if running, optional) ──────────────────────────────
+/* ════════════════════════════════════════════════
+   MindGuard — FINAL VERSION
+   Target: Ages 10-15 | Features: UI + Mental Health + Guardian Alerts
+════════════════════════════════════════════════ */
 const API = 'http://localhost:3000';
-const MODEL_URL = '/models';
+const MODEL_URL = 'https://cdn.jsdelivr.net/npm/@vladmandic/face-api/model';
 let backendOnline = false;
 
-// ── Face API state ───────────────────────────────────────────────
-let modelsLoaded = false;
-let regStream    = null;
-let verStream    = null;
-let verInterval  = null;
-let facePreviewTimer = null;
-let storedDescriptor = null; // fallback in-memory face store
+// Face API state
+let modelsLoaded = false, regStream = null, verStream = null;
+let verInterval = null, facePreviewTimer = null, storedDescriptor = null;
 
-// ── Screen time state ────────────────────────────────────────────
+// State
 const DEFAULT_STATE = {
-  dailyLimit: 60,
-  screenTime: 0,
-  bypasses: 0,
-  lockCount: 0,
-  appOpens: { Instagram:0, YouTube:0, Snapchat:0, Twitter:0, TikTok:0, Reddit:0 },
-  isBlocked: false,
-  tempAccess: false,
-  tempExpiry: 0,
-  lastReset: new Date().toDateString(),
-  faceRegistered: false,
+  dailyLimit: 120, screenTime: 0, bypasses: 0, lockCount: 0,
+  appOpens: { Instagram:0,YouTube:0,Snapchat:0,Twitter:0,TikTok:0,Reddit:0 },
+  appTime: { Instagram:0,YouTube:0,Snapchat:0,Twitter:0,TikTok:0,Reddit:0 },
+  isBlocked:false, tempAccess:false, tempExpiry:0,
+  lastReset: new Date().toDateString(), faceRegistered:false,
+  parentPin: null,
 };
-
 function loadState() {
   try {
-    const raw = localStorage.getItem('mindguard_v2');
+    const raw = localStorage.getItem('mg_final_v1');
     if (!raw) return { ...DEFAULT_STATE };
     const s = JSON.parse(raw);
     if (s.lastReset !== new Date().toDateString())
-      return { ...DEFAULT_STATE, dailyLimit: s.dailyLimit, faceRegistered: s.faceRegistered };
-    return { ...DEFAULT_STATE, ...s };
+      return { ...DEFAULT_STATE, dailyLimit:s.dailyLimit, faceRegistered:s.faceRegistered, parentPin:s.parentPin };
+    return { ...DEFAULT_STATE, ...s, isBlocked:false, tempAccess:false, tempExpiry:0 };
   } catch { return { ...DEFAULT_STATE }; }
 }
-function saveState() { try { localStorage.setItem('mindguard_v2', JSON.stringify(state)); } catch {} }
+function saveState() { try { localStorage.setItem('mg_final_v1', JSON.stringify(state)); } catch {} }
 let state = loadState();
 
-// ── Shared global (integration API) ─────────────────────────────
 window.MindGuard = {
-  isLocked: false,
-  unlockAttempts: 0,
-  timesLocked: 0,
-  lastUnlockTime: null,
-  lockTriggeredReason: '',
+  isLocked:false, unlockAttempts:0, timesLocked:0,
+  lastUnlockTime:null, lockTriggeredReason:'',
 };
-
 const $ = id => document.getElementById(id);
 const sessionStart = new Date().toISOString();
+let alertLog = [];
+let notifThresholds = new Set();
 
-// ══════════════════════════════════════════════════
-// NAVIGATION
-// ══════════════════════════════════════════════════
+// ════ NAVIGATION ════════════════════════════
 function showSection(target) {
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.toggle('active', b.dataset.section === target));
   document.querySelectorAll('.mob-btn').forEach(b => b.classList.toggle('active', b.dataset.section === target));
   document.querySelectorAll('.section').forEach(s => s.classList.toggle('active', s.id === target));
   if (target === 'analytics') renderAnalytics();
 }
-
 function goToParent() { showSection('parent'); }
-
 function injectMobileNav() {
   const nav = document.createElement('nav');
   nav.className = 'mob-nav';
   nav.innerHTML = `
-    <button class="mob-btn active" data-section="dashboard"><span>📊</span>Home</button>
+    <button class="mob-btn active" data-section="dashboard"><span>🏠</span>Home</button>
     <button class="mob-btn" data-section="apps"><span>📱</span>Apps</button>
-    <button class="mob-btn" data-section="analytics"><span>📈</span>Stats</button>
-    <button class="mob-btn" data-section="parent"><span>🔒</span>Parent</button>
+    <button class="mob-btn" data-section="analytics"><span>📊</span>Stats</button>
+    <button class="mob-btn" data-section="parent"><span>🔒</span>Guardian</button>
   `;
   document.body.appendChild(nav);
   nav.querySelectorAll('.mob-btn').forEach(b => b.addEventListener('click', () => showSection(b.dataset.section)));
 }
 
-// ══════════════════════════════════════════════════
-// SCREEN TIME TIMER
-// ══════════════════════════════════════════════════
+// ════ TIMER ══════════════════════════════════
 let timerInterval = null;
-let lastAvatarThreshold = 0;
+let currentAppOpen = null;
 
 function startTimer() {
   if (timerInterval) return;
   timerInterval = setInterval(() => {
     if (state.isBlocked && !state.tempAccess) return;
     if (state.tempAccess && Date.now() > state.tempExpiry) {
-      state.tempAccess = false;
-      triggerBlock();
-      saveState(); return;
+      state.tempAccess = false; triggerBlock(); saveState(); return;
     }
-    const limitSecs = state.dailyLimit * 60; // convert minutes → seconds
+    const limitSecs = state.dailyLimit * 60;
     state.screenTime = Math.min(state.screenTime + 1, limitSecs + 9999);
-    saveState();
-    updateDashboard();
-    checkAvatarMood();
-    checkScreenTimeAlerts();
+    if (currentAppOpen) {
+      state.appTime[currentAppOpen] = (state.appTime[currentAppOpen] || 0) + 1;
+    }
+    saveState(); updateDashboard(); checkAvatarMood(); checkScreenTimeAlerts();
     if (state.screenTime >= limitSecs && !state.isBlocked) triggerBlock();
   }, 1000);
 }
 
 function fmtTime(s) {
   if (s < 60) return s + 's';
-  const m = Math.floor(s/60), sec = s%60;
-  return m + 'm' + (sec > 0 ? ' ' + sec + 's' : '');
+  if (s < 3600) { const m = Math.floor(s/60), sec = s%60; return m+'m'+(sec>0?' '+sec+'s':''); }
+  const h = Math.floor(s/3600), m = Math.floor((s%3600)/60);
+  return h+'h'+(m>0?' '+m+'m':'');
+}
+function fmtLimit(mins) {
+  if (mins < 60) return mins+'m';
+  const h = Math.floor(mins/60), m = mins%60;
+  return h+'h'+(m>0?' '+m+'m':'');
 }
 
-// ══════════════════════════════════════════════════
-// DASHBOARD UPDATE
-// ══════════════════════════════════════════════════
+// ════ DASHBOARD UPDATE ═══════════════════════
 function updateDashboard() {
-  const used      = state.screenTime;
-  const limitSecs = state.dailyLimit * 60; // convert minutes → seconds
-  const remain    = Math.max(limitSecs - used, 0);
-  const pct       = Math.min((used / limitSecs) * 100, 100);
+  const used = state.screenTime, limitSecs = state.dailyLimit * 60;
+  const remain = Math.max(limitSecs - used, 0);
+  const pct = Math.min((used/limitSecs)*100, 100);
+  const timePenalty = Math.min((used/limitSecs)*60, 60);
+  const bypassPenalty = Math.min(state.bypasses*10, 40);
+  const score = Math.max(Math.round(100 - timePenalty - bypassPenalty), 0);
 
-  $('usedDisp').textContent    = fmtTime(used);
-  $('remainDisp').textContent  = fmtTime(remain);
-  $('bypassDisp').textContent  = state.bypasses;
-  $('lockCountDisp').textContent = state.lockCount || 0;
-  $('progressPct').textContent = Math.round(pct) + '%';
-  $('limitLblTrack').textContent = fmtTime(limitSecs);
+  $('usedDisp').textContent = fmtTime(used);
+  $('remainDisp').textContent = fmtTime(remain);
+  $('bypassDisp').textContent = state.bypasses;
+  $('focusScoreDash').textContent = score;
+  $('progressPct').textContent = Math.round(pct)+'%';
+  $('limitLblTrack').textContent = fmtLimit(state.dailyLimit);
+  $('limitSlider').value = state.dailyLimit;
+  $('limitVal').textContent = fmtLimit(state.dailyLimit);
 
   const fill = $('trackFill');
-  fill.style.width = pct + '%';
+  fill.style.width = pct+'%';
   fill.classList.remove('warn','danger');
   if (pct >= 80) fill.classList.add('danger');
   else if (pct >= 50) fill.classList.add('warn');
@@ -995,189 +1065,150 @@ function updateDashboard() {
   $('statusDot').classList.toggle('blocked', blocked);
   $('statusLabel').textContent = blocked ? 'Blocked' : state.tempAccess ? 'Temp Access' : 'Active';
 
-  $('limitSlider').value = limit;
-  $('limitVal').textContent = state.dailyLimit + 'm';
+  // XP bar (focus score → XP)
+  $('xpFill').style.width = score + '%';
+  $('xpVal').textContent = score + ' / 100 XP';
+
+  // Welcome banner
+  if (pct >= 80) {
+    $('welcomeAvatar').textContent = '😰';
+    $('welcomeMsg').textContent = "Whoa, almost at the limit!";
+    $('welcomeSub').textContent = "Maybe stretch, grab water, or rest your eyes. 👀";
+  } else if (pct >= 50) {
+    $('welcomeAvatar').textContent = '😬';
+    $('welcomeMsg').textContent = "Halfway through your screen time";
+    $('welcomeSub').textContent = "Still doing okay! Take a quick break soon.";
+  } else {
+    $('welcomeAvatar').textContent = '😊';
+    $('welcomeMsg').textContent = 'Hey! You\'re doing great today 🌟';
+    $('welcomeSub').textContent = 'Your screen time is looking healthy. Keep it up!';
+  }
+
+  // App time badges
+  Object.keys(state.appTime || {}).forEach(app => {
+    const el = $('time-'+app);
+    if (el) el.textContent = fmtTime(state.appTime[app]||0)+' today';
+  });
 }
 
-// ══════════════════════════════════════════════════
-// ══════════════════════════════════════════════════
-// AVATAR ALERT SYSTEM
-// ══════════════════════════════════════════════════
-const AV_STATES = {
-  chill: {
-    bodyClass: '', glowClass: '', bubbleClass: '', barClass: '', dotClass: '',
-    icon: '😊', title: 'All good!', barTxt: 'All good — no alerts',
-    msgs: [
-      "You're doing great! Stay focused 🌟",
-      "Screen time is under control. Keep it up!",
-      "Nice! You're well within your limit today.",
-    ]
-  },
-  warn: {
-    bodyClass: 'warn', glowClass: 'warn', bubbleClass: 'warn', barClass: 'warn', dotClass: 'warn',
-    icon: '😟', title: 'Heads up!', barTxt: '⚠️ Approaching your limit',
-    msgs: [
-      "You've been on screen a while. Rest your eyes soon 👀",
-      "Over halfway through your daily limit — take a breather!",
-      "Your eyes could use a break. Step away for 5 minutes 🌿",
-    ]
-  },
-  danger: {
-    bodyClass: 'danger', glowClass: 'danger', bubbleClass: 'danger', barClass: 'danger', dotClass: 'danger',
-    icon: '😡', title: 'Way too long!', barTxt: '🔴 Limit almost exceeded!',
-    msgs: [
-      "Seriously, put it down! Your brain needs rest NOW 🛑",
-      "You're at 80%+ of your limit. Time to disconnect!",
-      "Your focus score is dropping fast. Close the screen! 😤",
-    ]
-  },
-  exceeded: {
-    bodyClass: 'danger', glowClass: 'danger', bubbleClass: 'danger', barClass: 'danger', dotClass: 'danger',
-    icon: '🚨', title: 'Limit exceeded!', barTxt: '🚨 Daily limit reached!',
-    msgs: [
-      "You've used ALL your screen time. STOP and take a real break!",
-      "Limit hit! Your eyes and brain are begging you to rest 😵",
-      "Daily limit exceeded — this is exactly why MindBot is here!",
-    ]
-  }
+// ════ MOOD ═══════════════════════════════════
+const MOODS = {
+  chill: { emoji:'😊', title:'Feeling Fresh', sub:"You're doing great! Screen time is under control.", cls:'' },
+  tired: { emoji:'😟', title:'Getting Tired…', sub:"You've been scrolling a while. Rest your eyes soon.", cls:'tired' },
+  danger: { emoji:'😡', title:'Screen Overload!', sub:'Seriously, put it down. Your brain needs fresh air.', cls:'danger' },
 };
-
-let lastAvState = 'chill';
-let avMsgIndex = 0;
-
 function checkAvatarMood() {
-  const limitSecs = state.dailyLimit * 60;
-  const pct = (state.screenTime / limitSecs) * 100;
-
-  let newState = 'chill';
-  if (pct >= 100) newState = 'exceeded';
-  else if (pct >= 80) newState = 'danger';
-  else if (pct >= 50) newState = 'warn';
-
-  const av = AV_STATES[newState];
-
-  // Update avatar body
-  const body = $('avBody');
-  body.className = 'av-body' + (av.bodyClass ? ' ' + av.bodyClass : '');
-
-  // Update glow
-  const glow = $('avGlow');
-  glow.className = 'av-glow' + (av.glowClass ? ' ' + av.glowClass : '');
-
-  // Update face expression
-  const mouth = $('avMouth');
-  mouth.className = 'av-mouth' + (newState === 'chill' ? '' : newState === 'warn' ? ' neutral' : ' frown');
-
-  // Update card
-  const card = $('avatarCard');
-  card.className = 'avatar-card' + (av.bodyClass === 'warn' ? ' av-warn' : av.bodyClass === 'danger' ? ' av-danger' : '');
-
-  // Update bubble — rotate messages if state changed
-  if (newState !== lastAvState) {
-    avMsgIndex = 0;
-    lastAvState = newState;
-  }
-  const msg = av.msgs[avMsgIndex % av.msgs.length];
-  $('avBubbleIcon').textContent = av.icon;
-  $('avBubbleTitle').textContent = av.title;
-  $('avBubbleMsg').textContent = msg;
-  $('avBubble').className = 'av-bubble' + (av.bubbleClass ? ' ' + av.bubbleClass : '');
-
-  // Update alert bar
-  $('avAlertBar').className = 'av-alert-bar' + (av.barClass ? ' ' + av.barClass : '');
-  $('avAlertDot').className = 'av-alert-dot' + (av.dotClass ? ' ' + av.dotClass : '');
-  $('avAlertTxt').textContent = av.barTxt;
+  const pct = (state.screenTime / (state.dailyLimit*60)) * 100;
+  let mood = pct >= 80 ? 'danger' : pct >= 50 ? 'tired' : 'chill';
+  const m = MOODS[mood];
+  const face = $('moodFace');
+  face.textContent = m.emoji;
+  face.className = 'mood-face' + (m.cls ? ' '+m.cls : '');
+  $('moodTitle').textContent = m.title;
+  $('moodSub').textContent = m.sub;
 }
 
-// ══════════════════════════════════════════════════
-// SOUND ALERTS (mirrors winsound.Beep from screen_time_app.py)
-// Uses Web Audio API — no files needed
-// ══════════════════════════════════════════════════
-function playBeep(freq, beeps = 1) {
+// ════ SOUND ══════════════════════════════════
+function playBeep(freq, beeps=1) {
   try {
-    const ctx = new (window.AudioContext || window.webkitAudioContext)();
-    for (let i = 0; i < beeps; i++) {
-      const osc  = ctx.createOscillator();
-      const gain = ctx.createGain();
+    const ctx = new (window.AudioContext||window.webkitAudioContext)();
+    for (let i=0; i<beeps; i++) {
+      const osc=ctx.createOscillator(), gain=ctx.createGain();
       osc.connect(gain); gain.connect(ctx.destination);
-      osc.type = 'sine';
-      const t = ctx.currentTime + i * 0.32;
-      osc.frequency.setValueAtTime(freq, t);
-      gain.gain.setValueAtTime(0.25, t);
-      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.25);
-      osc.start(t); osc.stop(t + 0.28);
+      osc.type='sine';
+      const t=ctx.currentTime+i*0.32;
+      osc.frequency.setValueAtTime(freq,t);
+      gain.gain.setValueAtTime(0.22,t);
+      gain.gain.exponentialRampToValueAtTime(0.001,t+0.25);
+      osc.start(t); osc.stop(t+0.28);
     }
   } catch(e) {}
 }
 
-// ══════════════════════════════════════════════════
-// SCREEN TIME NOTIFICATIONS (mirrors ctypes toast from screen_time_app.py)
-// Uses Notification API — shows real browser notifications
-// ══════════════════════════════════════════════════
+// ════ NOTIFICATIONS ══════════════════════════
 async function requestNotifPermission() {
-  if ('Notification' in window && Notification.permission === 'default') {
+  if ('Notification' in window && Notification.permission === 'default')
     await Notification.requestPermission();
-  }
 }
-
-function sendNotification(title, body, icon = '🛡️') {
-  if ('Notification' in window && Notification.permission === 'granted') {
-    new Notification(title, { body, icon: '/favicon.ico' });
-  }
+function sendNotification(title, body) {
+  if ('Notification' in window && Notification.permission === 'granted')
+    new Notification(title, { body });
+  logAlert(body, title.includes('80')||title.includes('limit') ? 'danger' : 'warn');
 }
-
-let notifThresholds = new Set();
+function logAlert(msg, type='info') {
+  const now = new Date();
+  const timeStr = now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+  alertLog.unshift({ msg, type, time: timeStr });
+  if (alertLog.length > 20) alertLog.pop();
+  updateAlertList();
+}
+function updateAlertList() {
+  const list = $('alertList');
+  if (!list) return;
+  if (alertLog.length === 0) {
+    list.innerHTML = '<div class="alert-empty">No alerts yet today — you\'re doing great!</div>';
+    return;
+  }
+  list.innerHTML = alertLog.map(a =>
+    `<div class="alert-item ${a.type}"><span>${a.type==='danger'?'🔴':a.type==='warn'?'⚠️':'ℹ️'}</span><span>${a.msg}</span><span class="alert-time">${a.time}</span></div>`
+  ).join('');
+}
 function checkScreenTimeAlerts() {
   const limitSecs = state.dailyLimit * 60;
   const pct = (state.screenTime / limitSecs) * 100;
+  const do50 = $('notif50') ? $('notif50').checked : true;
+  const do80 = $('notif80') ? $('notif80').checked : true;
+  const do100 = $('notif100') ? $('notif100').checked : true;
 
-  // Mirrors THRESHOLDS from screen_time_app.py
-  if (pct >= 50 && !notifThresholds.has(50)) {
+  if (do50 && pct>=50 && !notifThresholds.has(50)) {
     notifThresholds.add(50);
-    playBeep(520, 1);
-    sendNotification('MindGuard 😊', '30 min done! Rest your eyes for a bit.');
+    playBeep(520,1);
+    sendNotification('MindGuard 😊','50% of screen time used! Maybe take a quick break.');
     showAvatarBubble("You've been on screen a while 😬");
   }
-  if (pct >= 80 && !notifThresholds.has(80)) {
+  if (do80 && pct>=80 && !notifThresholds.has(80)) {
     notifThresholds.add(80);
-    playBeep(780, 2);
-    sendNotification('MindGuard 😟', '80% of your limit used! Stretch and look away.');
+    playBeep(780,2);
+    sendNotification('MindGuard ⚠️','80% of limit used! Stretch, look away, take water.');
     showAvatarBubble('Almost at your limit ⏳ — wrap it up soon!');
   }
-  if (pct >= 100 && !notifThresholds.has(100)) {
+  if (do100 && pct>=100 && !notifThresholds.has(100)) {
     notifThresholds.add(100);
-    playBeep(1050, 3);
-    sendNotification('MindGuard 😡', "Time's up! Put the screen down. Eyes need rest NOW.");
-
-    // If face lock is registered → trigger face lock instead of plain block
-    if (state.faceRegistered || storedDescriptor) {
-      triggerFaceLock('screen_limit_exceeded');
-    }
+    playBeep(1050,3);
+    sendNotification('MindGuard 🔒',"Time's up! Screen limit reached.");
+    if (state.faceRegistered || storedDescriptor) triggerFaceLock('screen_limit_exceeded');
+    triggerBlock();
   }
 }
+function sendTestAlert() {
+  logAlert('Test alert sent by guardian!', 'info');
+  showAvatarBubble('Guardian sent a test alert 🔔');
+  showAlert('lockAlert','Test alert logged!','info');
+}
 
-// ══════════════════════════════════════════════════
-// BLOCKING SYSTEM
-// ══════════════════════════════════════════════════
+// ════ BLOCKING ════════════════════════════════
 function triggerBlock() {
   state.isBlocked = true; saveState();
-  $('blockedOv').classList.remove('hidden');
-  $('reqSection').classList.remove('hidden');
-  $('cdSection').classList.add('hidden');
-  $('tmpSection').classList.add('hidden');
+  if (!window.MindGuard.isLocked) {
+    $('blockedOv').classList.remove('hidden');
+    $('reqSection').classList.remove('hidden');
+    $('cdSection').classList.add('hidden');
+    $('tmpSection').classList.add('hidden');
+    $('pinUnlockInput').value = '';
+    $('pinUnlockMsg').textContent = '';
+  }
   $('statusDot').classList.add('blocked');
   $('statusLabel').textContent = 'Blocked';
   document.querySelectorAll('.app-card').forEach(c => c.classList.add('blocked-card'));
   if (navigator.vibrate) navigator.vibrate([200,100,200]);
-  playBeep(440, 2);
+  playBeep(440,2);
+  window.MindGuard.timesLocked++;
+  state.lockCount = window.MindGuard.timesLocked;
+  saveState();
 }
-
 function unblock(temporary) {
   state.isBlocked = false;
-  if (temporary) {
-    state.tempAccess = true;
-    state.tempExpiry = Date.now() + 10000;
-  }
+  if (temporary) { state.tempAccess = true; state.tempExpiry = Date.now() + 10000; }
   saveState();
   $('blockedOv').classList.add('hidden');
   $('statusDot').classList.remove('blocked');
@@ -1201,506 +1232,463 @@ $('reqMoreBtn').addEventListener('click', () => {
     }
   }, 1000);
 });
-
 $('goBtn').addEventListener('click', () => unblock(true));
 
-// App cards
+// ════ PIN SYSTEM ══════════════════════════════
+function savePin() {
+  const pin = $('pinSetInput').value.trim();
+  if (pin.length !== 4 || !/^\d{4}$/.test(pin)) {
+    showAlert('pinAlert','Please enter a 4-digit number.','err'); return;
+  }
+  state.parentPin = pin; saveState();
+  $('pinSetInput').value = '';
+  showAlert('pinAlert','PIN saved! ✅ Keep it secret.','ok');
+  updateLockPill(true);
+}
+function tryPinUnlock() {
+  const pin = $('pinUnlockInput').value.trim();
+  if (!state.parentPin) { $('pinUnlockMsg').textContent = 'No PIN set yet.'; return; }
+  if (pin === state.parentPin) {
+    $('pinUnlockInput').value = '';
+    $('pinUnlockMsg').textContent = '';
+    window.MindGuard.isLocked = false;
+    state.isBlocked = false; state.screenTime = 0; notifThresholds = new Set();
+    saveState();
+    document.querySelectorAll('.app-card').forEach(c => c.classList.remove('blocked-card'));
+    $('statusDot').classList.remove('blocked');
+    $('statusLabel').textContent = 'Active';
+    $('blockedOv').classList.add('hidden');
+    updateDashboard();
+    playBeep(880,1);
+    showAvatarBubble('Guardian unlocked! Welcome back 👋');
+    logAlert('Guardian unlocked via PIN', 'info');
+  } else {
+    $('pinUnlockMsg').textContent = '❌ Wrong PIN. Try again.';
+    playBeep(220,2);
+  }
+}
+function tryFlPinUnlock() {
+  const pin = $('flPinInput').value.trim();
+  if (!state.parentPin) { $('flPinMsg').textContent = 'No PIN set yet.'; return; }
+  if (pin === state.parentPin) {
+    $('flPinInput').value = '';
+    $('flPinMsg').textContent = '';
+    handleUnlockSuccess();
+  } else {
+    $('flPinMsg').textContent = '❌ Wrong PIN.';
+    playBeep(220,2);
+  }
+}
+
+// ════ APPS ═══════════════════════════════════
 document.querySelectorAll('.app-card').forEach(card => {
   card.addEventListener('click', () => {
     if (state.isBlocked && !state.tempAccess) {
-      $('blockedOv').classList.remove('hidden');
-      $('reqSection').classList.remove('hidden');
-      $('cdSection').classList.add('hidden');
-      $('tmpSection').classList.add('hidden');
+      if (state.faceRegistered || storedDescriptor) triggerFaceLock('app_blocked');
+      else { $('blockedOv').classList.remove('hidden'); $('reqSection').classList.remove('hidden'); $('cdSection').classList.add('hidden'); $('tmpSection').classList.add('hidden'); }
       return;
     }
     const app = card.dataset.app, emoji = card.dataset.emoji;
-    state.appOpens[app] = (state.appOpens[app]||0) + 1; saveState();
+    state.appOpens[app] = (state.appOpens[app]||0)+1; saveState();
     const badge = $('badge-'+app);
-    if (badge) badge.textContent = state.appOpens[app] + ' open' + (state.appOpens[app]!==1?'s':'');
+    if (badge) badge.textContent = state.appOpens[app]+' open'+(state.appOpens[app]!==1?'s':'');
+    currentAppOpen = app;
     $('appOpenEmoji').textContent = emoji;
     $('appOpenName').textContent = app;
     $('appOpenScreen').classList.remove('hidden');
-    $('appOpenScreen').scrollIntoView({behavior:'smooth',block:'nearest'});
+    $('appOpenScreen').scrollIntoView({ behavior:'smooth', block:'nearest' });
   });
 });
-
-$('closeAppBtn').addEventListener('click', () => $('appOpenScreen').classList.add('hidden'));
+$('closeAppBtn').addEventListener('click', () => { $('appOpenScreen').classList.add('hidden'); currentAppOpen = null; });
 
 $('limitSlider').addEventListener('input', () => {
   state.dailyLimit = parseInt($('limitSlider').value);
-  $('limitVal').textContent = state.dailyLimit + 'm';
+  $('limitVal').textContent = fmtLimit(state.dailyLimit);
   saveState(); updateDashboard();
-  if (state.isBlocked && state.screenTime < state.dailyLimit * 60) {
+  if (state.isBlocked && state.screenTime < state.dailyLimit*60) {
     state.isBlocked = false;
     $('blockedOv').classList.add('hidden');
     document.querySelectorAll('.app-card').forEach(c => c.classList.remove('blocked-card'));
-    saveState(); updateDashboard();
+    notifThresholds = new Set(); saveState(); updateDashboard();
   }
 });
 
 $('resetBtn').addEventListener('click', () => {
   if (!confirm("Reset today's data?")) return;
-  state = { ...DEFAULT_STATE, dailyLimit: state.dailyLimit, faceRegistered: state.faceRegistered, lastReset: new Date().toDateString() };
+  state = { ...DEFAULT_STATE, dailyLimit:state.dailyLimit, faceRegistered:state.faceRegistered, parentPin:state.parentPin, lastReset:new Date().toDateString() };
   saveState();
   $('blockedOv').classList.add('hidden');
+  $('faceLockOv').classList.add('hidden');
+  window.MindGuard.isLocked = false;
   document.querySelectorAll('.app-card').forEach(c => c.classList.remove('blocked-card'));
-  Object.keys(state.appOpens).forEach(app => { const b = $('badge-'+app); if(b) b.textContent='0 opens'; });
+  Object.keys(state.appOpens).forEach(app => { const b=$('badge-'+app); if(b) b.textContent='0 opens'; const t=$('time-'+app); if(t) t.textContent='0s today'; });
   $('appOpenScreen').classList.add('hidden');
   $('rewardBanner').classList.add('hidden');
-  lastAvatarThreshold = 0; notifThresholds = new Set();
+  notifThresholds = new Set(); currentAppOpen = null;
+  window.MindGuard.unlockAttempts = 0; window.MindGuard.timesLocked = 0;
+  $('lsAttempts').textContent = '0'; $('lsLocks').textContent = '0'; $('lsState').textContent = '🔓';
+  alertLog = []; updateAlertList();
   updateDashboard(); checkAvatarMood();
   showAvatarBubble("Fresh start! You got this 💪");
 });
 
-// ══════════════════════════════════════════════════
-// AVATAR SPEAK — updates the card bubble directly
-// ══════════════════════════════════════════════════
+// ════ AVATAR BUBBLE ═══════════════════════════
+let bubbleHideTimer = null;
 function showAvatarBubble(msg) {
-  // Animate bubble text change
-  const bubble = $('avBubble');
-  const msgEl  = $('avBubbleMsg');
-  if (!bubble || !msgEl) return;
-  msgEl.style.opacity = '0';
-  setTimeout(() => {
-    msgEl.textContent = msg;
-    msgEl.style.transition = 'opacity 0.3s';
-    msgEl.style.opacity = '1';
-  }, 200);
-  // Rotate to next message next time
-  avMsgIndex++;
+  const pct = (state.screenTime/(state.dailyLimit*60))*100;
+  const emoji = pct>=80?'😰':pct>=50?'😬':'😊';
+  const toast = document.getElementById('avatar-toast');
+  document.getElementById('toast-bubble').textContent = msg;
+  document.getElementById('toast-face').textContent = emoji;
+  toast.style.opacity = '1';
+  if (bubbleHideTimer) clearTimeout(bubbleHideTimer);
+  bubbleHideTimer = setTimeout(() => { toast.style.opacity='0'; }, 5000);
 }
 
-// ══════════════════════════════════════════════════
-// ANALYTICS
-// ══════════════════════════════════════════════════
+// ════ TAKE BREAK ══════════════════════════════
+function handleTakeBreak() {
+  $('blockedOv').classList.add('hidden');
+  state.isBlocked = false; saveState();
+  showAvatarBubble("Great call! Rest those eyes 🌿 Come back refreshed.");
+  logAlert('User chose to take a break', 'info');
+  setTimeout(() => {
+    if (state.screenTime >= state.dailyLimit*60) {
+      state.isBlocked = true; saveState();
+      if (!window.MindGuard.isLocked) {
+        $('blockedOv').classList.remove('hidden');
+        $('reqSection').classList.remove('hidden');
+        $('cdSection').classList.add('hidden');
+        $('tmpSection').classList.add('hidden');
+      }
+    }
+  }, 30000);
+}
+
+// ════ MENTAL HEALTH MODALS ════════════════════
+const MH_CONTENT = {
+  breathe: {
+    title: '🫁 Box Breathing', sub: 'This quick exercise calms your nervous system in under 2 minutes.',
+    content: `
+      <div class="breathing-viz">🌬️</div>
+      <p class="breathing-text" id="breathText">Breathe in... (4s)</p>
+      <ul class="mh-tips">
+        <li><span>1️⃣</span><div>Breathe IN for 4 seconds</div></li>
+        <li><span>2️⃣</span><div>HOLD for 4 seconds</div></li>
+        <li><span>3️⃣</span><div>Breathe OUT for 4 seconds</div></li>
+        <li><span>4️⃣</span><div>HOLD for 4 seconds. Repeat 3×</div></li>
+      </ul>
+    `
+  },
+  mood: {
+    title: '💭 Quick Check-In', sub: 'How are you honestly feeling right now?',
+    content: `
+      <ul class="mh-tips">
+        <li><span>😰</span><div><strong>Stressed?</strong> Close the phone, step outside for 2 min, breathe fresh air.</div></li>
+        <li><span>😢</span><div><strong>Down?</strong> Text a friend, listen to your fav song, or draw something.</div></li>
+        <li><span>😴</span><div><strong>Tired?</strong> Screens make tiredness worse. Try a 10-min rest with your eyes closed.</div></li>
+        <li><span>😡</span><div><strong>Frustrated?</strong> It's okay! Shake your hands, do 10 jumping jacks, then come back.</div></li>
+        <li><span>😊</span><div><strong>Good?</strong> Awesome! Keep screen time short and spend that energy IRL.</div></li>
+      </ul>
+    `
+  },
+  tips: {
+    title: '🌿 Break Ideas & Eye Care', sub: 'Give your brain and eyes a breather!',
+    content: `
+      <ul class="mh-tips">
+        <li><span>👁️</span><div><strong>20-20-20 Rule:</strong> Every 20 min, look at something 20 feet away for 20 seconds.</div></li>
+        <li><span>🚶</span><div>Walk around the house or outside for 5 min — your body needs it!</div></li>
+        <li><span>💧</span><div>Drink a glass of water. Screens make you dehydrated faster than you think.</div></li>
+        <li><span>🎨</span><div>Draw, doodle, or write something in a notebook. Zero screens!</div></li>
+        <li><span>🎵</span><div>Put on music and just vibe — no scrolling, just listening.</div></li>
+      </ul>
+    `
+  }
+};
+function openMH(type) {
+  const c = MH_CONTENT[type];
+  $('mhModalBox').innerHTML = `
+    <h2>${c.title}</h2>
+    <p>${c.sub}</p>
+    ${c.content}
+    <button class="btn btn-primary" onclick="closeMH()" style="width:100%;justify-content:center;">Got it! 👍</button>
+  `;
+  $('mhModal').classList.remove('hidden');
+}
+function closeMH(e) {
+  if (!e || e.target === $('mhModal')) $('mhModal').classList.add('hidden');
+}
+
+// ════ ANALYTICS ═══════════════════════════════
 function renderAnalytics() {
   const opens = state.appOpens;
-  const maxO  = Math.max(...Object.values(opens), 1);
+  const maxO = Math.max(...Object.values(opens),1);
   const colors = [
-    'linear-gradient(90deg,#f59e0b,#f97316)',
-    'linear-gradient(90deg,#10b981,#3b82f6)',
-    'linear-gradient(90deg,#8b5cf6,#ec4899)',
-    'linear-gradient(90deg,#06b6d4,#3b82f6)',
-    'linear-gradient(90deg,#f59e0b,#10b981)',
+    'linear-gradient(90deg,#6366f1,#a78bfa)',
+    'linear-gradient(90deg,#10b981,#22d3ee)',
+    'linear-gradient(90deg,#ec4899,#a78bfa)',
+    'linear-gradient(90deg,#22d3ee,#6366f1)',
+    'linear-gradient(90deg,#fbbf24,#ec4899)',
     'linear-gradient(90deg,#ef4444,#f97316)',
   ];
   $('appBarChart').innerHTML = '';
   Object.entries(opens).forEach(([app, count], i) => {
-    const pct = (count / maxO) * 100;
+    const pct = (count/maxO)*100;
     const row = document.createElement('div'); row.className = 'bar-row';
-    row.innerHTML = `<div class="bar-lbl">${app}</div><div class="bar-track"><div class="bar-fill" style="width:${pct||5}%;background:${colors[i%colors.length]}">${count||''}</div></div>`;
+    row.innerHTML = `<div class="bar-lbl">${app}</div><div class="bar-track"><div class="bar-fill" style="width:${Math.max(pct,5)}%;background:${colors[i%colors.length]}">${count||''}</div></div>`;
     $('appBarChart').appendChild(row);
   });
-
-  $('totalTimeSum').textContent  = fmtTime(state.screenTime);
-  $('bypassSum').textContent     = state.bypasses;
-  $('lockTriggersSum').textContent = state.lockCount || 0;
-
+  $('totalTimeSum').textContent = fmtTime(state.screenTime);
+  $('bypassSum').textContent = state.bypasses;
+  $('lockTriggersSum').textContent = state.lockCount||0;
   const most = Object.entries(opens).sort((a,b)=>b[1]-a[1])[0];
-  $('mostUsedApp').textContent = (most && most[1]>0) ? `${most[0]} (${most[1]}×)` : '—';
-
-  const isOver = state.screenTime >= state.dailyLimit;
-  $('limitStatus').textContent  = isOver ? 'Exceeded 🔴' : 'Under Limit ✅';
-  $('limitStatus').style.color  = isOver ? 'var(--coral2)' : 'var(--green2)';
-
-  const tp = Math.min((state.screenTime / state.dailyLimit) * 60, 60);
-  const bp = Math.min(state.bypasses * 10, 40);
-  const score = Math.max(Math.round(100 - tp - bp), 0);
+  $('mostUsedApp').textContent = (most&&most[1]>0)?`${most[0]} (${most[1]}×)`:'—';
+  const isOver = state.screenTime >= state.dailyLimit*60;
+  $('limitStatus').textContent = isOver?'Exceeded 🔴':'Under Limit ✅';
+  $('limitStatus').style.color = isOver?'var(--red)':'var(--green2)';
+  const timePenalty = Math.min((state.screenTime/(state.dailyLimit*60))*60,60);
+  const bypassPenalty = Math.min(state.bypasses*10,40);
+  const score = Math.max(Math.round(100-timePenalty-bypassPenalty),0);
   $('focusScore').textContent = score;
-  $('ringFill').style.strokeDashoffset = 314 - (score/100)*314;
-  $('ringFill').style.stroke = score >= 70 ? 'url(#rg)' : score >= 40 ? 'var(--coral)' : 'var(--coral2)';
-
-  if (score >= 80) $('focusLbl').textContent = 'Excellent! Keep it up 🌟';
-  else if (score >= 60) $('focusLbl').textContent = 'Good job, stay focused 👍';
-  else if (score >= 40) $('focusLbl').textContent = 'Try to cut back a bit 🙏';
-  else $('focusLbl').textContent = 'Screen time too high 😔';
-
-  if (score >= 80 && state.screenTime > 0) $('rewardBanner').classList.remove('hidden');
-
-  // Lock stats on parent tab
+  $('ringFill').style.strokeDashoffset = 314-(score/100)*314;
+  $('ringFill').style.stroke = score>=70?'url(#rg)':score>=40?'var(--amber)':'var(--red)';
+  $('focusLbl').textContent = score>=80?'Excellent! Keep it up 🌟':score>=60?'Good job, stay focused 👍':score>=40?'Try to cut back a bit 🙏':'Screen time too high 😔';
+  if (score>=80 && state.screenTime>0) $('rewardBanner').classList.remove('hidden');
   $('lsAttempts').textContent = window.MindGuard.unlockAttempts;
-  $('lsLocks').textContent    = window.MindGuard.timesLocked;
-  $('lsState').textContent    = window.MindGuard.isLocked ? '🔒' : '🔓';
+  $('lsLocks').textContent = window.MindGuard.timesLocked;
+  $('lsState').textContent = window.MindGuard.isLocked?'🔒':'🔓';
+  updateAlertList();
 }
 
-// ══════════════════════════════════════════════════
-// FACE API — LOAD MODELS
-// ══════════════════════════════════════════════════
+// ════ FACE API ════════════════════════════════
+function setMdlProgress(pct, txt) {
+  $('mdlFill').style.width = pct+'%';
+  $('mdlTxt').textContent = txt;
+}
 async function loadFaceModels() {
   if (modelsLoaded) return;
   try {
-    setMdlProgress(10, 'Loading face detector…');
-    await faceapi.nets.ssdMobilenetv1.loadFromUri(MODEL_URL);
-    setMdlProgress(50, 'Loading landmark model…');
-    await faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL);
-    setMdlProgress(85, 'Loading recognition model…');
+    setMdlProgress(10,'Loading Face AI…');
+    await faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL);
+    setMdlProgress(55,'Halfway…');
     await faceapi.nets.faceRecognitionNet.loadFromUri(MODEL_URL);
-    setMdlProgress(100, '✅ Face AI ready!');
+    setMdlProgress(80,'Almost…');
+    await faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL);
+    setMdlProgress(100,'Face AI Ready ✅');
     modelsLoaded = true;
-    setTimeout(() => { $('mdlProgress').style.display='none'; }, 1200);
-    showAlert('regAlert', '🤖 Face AI ready! Open camera to register your face.', 'ok');
-    console.log('✅ Face models loaded from /models');
+    $('startRegBtn').disabled = false;
+    $('verifyBtn').disabled = !!(state.faceRegistered||storedDescriptor) ? false : true;
+    if (state.faceRegistered||storedDescriptor) $('verifyBtn').disabled = false;
   } catch(e) {
-    console.error('Model load error:', e);
-    setMdlProgress(0, '❌ Model load failed — check /models folder');
-    showAlert('regAlert', '❌ Could not load face models. Check that /models folder has the shard files and node server.js is running.', 'err');
+    setMdlProgress(0,'⚠️ Face AI unavailable offline');
   }
 }
-
-function setMdlProgress(pct, txt) {
-  $('mdlFill').style.width = pct + '%';
-  $('mdlTxt').textContent = txt;
-}
-
-// ══════════════════════════════════════════════════
-// FACE REGISTRATION
-// ══════════════════════════════════════════════════
-async function startReg() {
-  if (!modelsLoaded) { showAlert('regAlert','⏳ Models loading, please wait…','info'); return; }
-  try {
-    regStream = await navigator.mediaDevices.getUserMedia({ video:{width:640,height:480} });
-    const v = $('regVideo'); v.srcObject = regStream; v.classList.add('on');
-    $('regPlaceholder').style.display = 'none';
-    $('regCamWrap').classList.add('live');
-    tog('startRegBtn', false); tog('capRegBtn', true); tog('stopRegBtn', true);
-    startPreview('regVideo','regFaceBox');
-    showAlert('regAlert','📷 Center your face, then click Register Face','info');
-  } catch(e) {
-    showAlert('regAlert','❌ Camera denied. Allow camera access in browser settings.','err');
-  }
-}
-
-async function captureReg() {
-  const v = $('regVideo');
-  if (!v.srcObject) return;
-  showAlert('regAlert','🔍 Detecting face…','info');
-  const det = await faceapi.detectSingleFace(v).withFaceLandmarks().withFaceDescriptor();
-  if (!det) { showAlert('regAlert','⚠️ No face detected. Look directly at camera.','err'); return; }
-
-  const descriptor = Array.from(det.descriptor);
-
-  // Try backend first, fall back to in-memory
-  let success = false;
-  if (backendOnline) {
-    try {
-      const r = await fetch(API+'/api/register-face',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({descriptor})});
-      const d = await r.json();
-      if (d.success) success = true;
-    } catch(e) {}
-  }
-
-  // Always store in memory too (works without backend)
-  storedDescriptor = descriptor;
-  success = true;
-
-  if (success) {
-    state.faceRegistered = true; saveState();
-    updateRegStatus(true);
-    updateLockPill(true);
-    showAlert('regAlert','✅ Parent face registered! Face lock is now active.','ok');
-    stopReg();
-  }
-}
-
-function stopReg() {
-  if (facePreviewTimer) { clearInterval(facePreviewTimer); facePreviewTimer = null; }
-  if (regStream) { regStream.getTracks().forEach(t=>t.stop()); regStream=null; }
-  const v = $('regVideo'); v.srcObject=null; v.classList.remove('on');
-  $('regPlaceholder').style.display='flex';
-  $('regCamWrap').classList.remove('live');
-  $('regFaceBox').style.display='none';
-  tog('startRegBtn',true); tog('capRegBtn',false); tog('stopRegBtn',false);
-}
-
-async function resetParentFace() {
-  if (!confirm('Reset parent face? You must register again.')) return;
-  storedDescriptor = null;
-  state.faceRegistered = false; saveState();
-  updateRegStatus(false);
-  updateLockPill(false);
-  if (backendOnline) { try { await fetch(API+'/api/reset-face',{method:'DELETE'}); } catch(e){} }
-  showAlert('lockAlert','🗑️ Face data cleared. Please register again.','info');
-}
-
 function updateRegStatus(registered) {
-  const el = $('regStatus');
-  el.classList.toggle('registered', registered);
-  $('regStatusTxt').textContent = registered ? 'Parent Face Registered ✅' : 'Not Registered';
+  $('regDot').className = 'reg-dot' + (registered?' registered':'');
+  $('regStatusTxt').textContent = registered ? '✅ Registered' : 'Not Registered';
 }
-
 function updateLockPill(registered) {
-  const pill = $('lockPill');
-  pill.classList.toggle('locked-state', registered);
-  $('lockPillTxt').textContent = registered ? 'Face Lock Active' : 'Set Up Lock';
+  $('lockPillTxt').textContent = registered ? 'Locked' : 'Set Up Lock';
+  $('lockPill').className = 'lock-pill' + (registered?' locked-state':'');
 }
-
-// ══════════════════════════════════════════════════
-// LIVE FACE PREVIEW
-// ══════════════════════════════════════════════════
-function startPreview(videoId, boxId) {
-  const v = $(videoId), box = $(boxId);
-  if (facePreviewTimer) clearInterval(facePreviewTimer);
-  facePreviewTimer = setInterval(async () => {
-    if (!v.srcObject) return;
-    const det = await faceapi.detectSingleFace(v);
-    if (det) {
-      const sx = v.offsetWidth/(v.videoWidth||640);
-      const sy = v.offsetHeight/(v.videoHeight||480);
-      const b = det.box;
-      box.style.cssText = `display:block;left:${b.x*sx}px;top:${b.y*sy}px;width:${b.width*sx}px;height:${b.height*sy}px;`;
-    } else { box.style.display='none'; }
-  }, 400);
-}
-
-// ══════════════════════════════════════════════════
-// FACE LOCK OVERLAY — TRIGGER & VERIFY
-// ══════════════════════════════════════════════════
-/**
- * triggerFaceLock(reason)
- * ────────────────────────────────────────────────
- * INTEGRATION POINT — call from any module:
- *   triggerFaceLock('screen_limit_exceeded')
- *   triggerFaceLock('bedtime_restriction')
- *   triggerFaceLock('manual_test')
- */
-async function triggerFaceLock(reason = 'manual_test') {
-  if (window.MindGuard.isLocked) return;
-
-  // If no face registered, fall back to plain block
-  if (!state.faceRegistered && !storedDescriptor) {
-    showAlert('lockAlert','⚠️ Register a parent face first to use the face lock.','info');
-    return;
-  }
-
-  window.MindGuard.isLocked = true;
-  window.MindGuard.lockTriggeredReason = reason;
-  window.MindGuard.timesLocked++;
-  state.lockCount = (state.lockCount||0) + 1; saveState();
-
-  const reasonMap = {
-    screen_limit_exceeded: '⏱️ Screen time limit exceeded',
-    bedtime_restriction:   '🌙 Bedtime restriction active',
-    manual_test:           '🧪 Manual test triggered',
-    app_blocked:           '🚫 App blocked by parent',
-  };
-  $('flReason').textContent = reasonMap[reason] || reason;
-  $('faceLockOv').classList.remove('hidden');
-  $('lsLocks').textContent = window.MindGuard.timesLocked;
-
-  playBeep(880, 2);
-  await openVerifyCam();
-}
-
-async function openVerifyCam() {
-  if (!modelsLoaded) {
-    setFlStatus('Loading AI models…', true);
-    await loadFaceModels();
-  }
+async function startReg() {
+  if (!modelsLoaded) { showAlert('regAlert','Face AI is still loading — check the progress bar above and try again in a moment.','info'); return; }
   try {
-    verStream = await navigator.mediaDevices.getUserMedia({ video:{width:640,height:480} });
-    $('verifyVideo').srcObject = verStream;
-    $('verifyVideo').play();
-    setFlStatus('Scanning… look at the camera', true);
+    regStream = await navigator.mediaDevices.getUserMedia({ video:{ facingMode:'user' } });
+    $('regVideo').srcObject = regStream;
+    $('regPlaceholder').style.display = 'none';
+    $('regFaceBox').style.display = 'block';
+    $('startRegBtn').classList.add('hidden');
+    $('capRegBtn').classList.remove('hidden');
+    $('stopRegBtn').classList.remove('hidden');
+    showAlert('regAlert','Camera on. Look straight at screen, then tap Register.','info');
+  } catch(e) { showAlert('regAlert','Camera blocked. Check permissions.','err'); }
+}
+async function captureReg() {
+  if (!regStream||!modelsLoaded) return;
+  showAlert('regAlert','Scanning your face…','info');
+  try {
+    const vid = $('regVideo');
+    const det = await faceapi.detectSingleFace(vid, new faceapi.TinyFaceDetectorOptions())
+      .withFaceLandmarks().withFaceDescriptor();
+    if (!det) { showAlert('regAlert','No face detected. Move closer to camera.','err'); return; }
+    storedDescriptor = Array.from(det.descriptor);
+    localStorage.setItem('mg_face_desc', JSON.stringify(storedDescriptor));
+    state.faceRegistered = true; saveState();
+    stopReg();
+    updateRegStatus(true); updateLockPill(true);
+    showAlert('regAlert','Face registered! ✅ You can now lock the screen.','ok');
     $('verifyBtn').disabled = false;
-    startPreview('verifyVideo','flFaceBox');
-    verInterval = setInterval(captureVerify, 2000);
-  } catch(e) {
-    setFlStatus('Camera denied. Use Verify Now button.', false);
-    $('verifyBtn').disabled = false;
-  }
+  } catch(e) { showAlert('regAlert','Scan failed. Try again.','err'); }
+}
+function stopReg() {
+  if (regStream) { regStream.getTracks().forEach(t=>t.stop()); regStream=null; }
+  $('regVideo').srcObject = null;
+  $('regPlaceholder').style.display = 'flex';
+  $('regFaceBox').style.display = 'none';
+  $('startRegBtn').classList.remove('hidden');
+  $('capRegBtn').classList.add('hidden');
+  $('stopRegBtn').classList.add('hidden');
+}
+function resetParentFace() {
+  if (!confirm('Reset registered face?')) return;
+  storedDescriptor = null;
+  localStorage.removeItem('mg_face_desc');
+  state.faceRegistered = false; saveState();
+  updateRegStatus(false); updateLockPill(!!(state.parentPin));
+  showAlert('regAlert','Face data cleared.','info');
+  $('verifyBtn').disabled = true;
 }
 
-async function captureVerify() {
-  const v = $('verifyVideo');
-  if (!v.srcObject) return;
-  setFlStatus('Analyzing face…', true);
-
-  const det = await faceapi.detectSingleFace(v).withFaceLandmarks().withFaceDescriptor();
-  if (!det) { setFlStatus('No face detected — look at the camera', true); return; }
-
+// ════ FACE LOCK OVERLAY ═══════════════════════
+function triggerFaceLock(reason) {
+  window.MindGuard.isLocked = true;
+  window.MindGuard.timesLocked++;
+  window.MindGuard.lockTriggeredReason = reason;
+  state.lockCount = window.MindGuard.timesLocked; saveState();
+  $('lsLocks').textContent = window.MindGuard.timesLocked;
+  $('lsState').textContent = '🔒';
+  $('flPinInput').value = ''; $('flPinMsg').textContent = '';
+  $('faceLockOv').classList.remove('hidden');
+  $('flFaceBox').style.display = 'none';
+  setFlStatus('Tap scan to verify parent face',false);
+  $('flError').classList.add('hidden');
+  $('flAttempts').classList.remove('hidden');
+  $('flAttempts').textContent = 'Attempts: '+window.MindGuard.unlockAttempts;
+  logAlert('Screen locked: '+reason, 'danger');
+  playBeep(440,3);
+}
+function closeFaceLock() {
+  if (verStream) { verStream.getTracks().forEach(t=>t.stop()); verStream=null; }
+  clearInterval(verInterval);
+  $('faceLockOv').classList.add('hidden');
+  $('flFaceBox').style.display = 'none';
+  window.MindGuard.isLocked = false;
+  $('lsState').textContent = '🔓';
+}
+async function startVerify() {
+  if (!modelsLoaded) { setFlStatus('Face AI loading…',true); return; }
+  if (!(state.faceRegistered||storedDescriptor)) { setFlStatus('No face registered.',false); return; }
+  try {
+    verStream = await navigator.mediaDevices.getUserMedia({ video:{ facingMode:'user' } });
+    $('verVideo').srcObject = verStream;
+    $('flFaceBox').style.display = 'block';
+    setFlStatus('Scanning…',true);
+    verInterval = setInterval(verifyFace, 1200);
+  } catch(e) { setFlStatus('Camera blocked.',false); }
+}
+async function verifyFace() {
+  if (!verStream||!modelsLoaded) return;
   window.MindGuard.unlockAttempts++;
-  $('flAttempts').textContent  = window.MindGuard.unlockAttempts;
-  $('lsAttempts').textContent  = window.MindGuard.unlockAttempts;
-  setFlStatus('Verifying…', true);
-
-  const incomingDesc = Array.from(det.descriptor);
-  let isMatch = false;
-  let distance = 99;
-
-  // Try backend first
-  if (backendOnline) {
-    try {
-      const r = await fetch(API+'/api/verify-face',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({descriptor:incomingDesc})});
-      const d = await r.json();
-      if (d.success) { isMatch = d.match; distance = d.distance; }
-    } catch(e) {}
-  }
-
-  // Fallback: in-memory comparison (Euclidean distance)
-  if (!backendOnline && storedDescriptor) {
-    let sum = 0;
-    for (let i=0; i<incomingDesc.length; i++) sum += (incomingDesc[i]-storedDescriptor[i])**2;
-    distance = Math.sqrt(sum);
-    isMatch = distance < 0.55;
-  }
-
-  if (isMatch) {
-    handleUnlockSuccess();
-  } else {
-    setFlStatus(`Distance: ${typeof distance === 'number' ? distance.toFixed(3) : distance} — not matched`, false);
-    showFlError();
-  }
+  $('flAttempts').textContent = 'Attempts: '+window.MindGuard.unlockAttempts;
+  $('lsAttempts').textContent = window.MindGuard.unlockAttempts;
+  let desc; try {
+    const det = await faceapi.detectSingleFace($('verVideo'), new faceapi.TinyFaceDetectorOptions())
+      .withFaceLandmarks().withFaceDescriptor();
+    if (!det) { setFlStatus('No face — move closer',false); return; }
+    desc = det.descriptor;
+  } catch(e) { return; }
+  const stored = storedDescriptor ? new Float32Array(storedDescriptor) : null;
+  if (!stored) { setFlStatus('No registered face.',false); return; }
+  let dist=0; for(let i=0;i<desc.length;i++) dist+=(desc[i]-stored[i])**2; dist=Math.sqrt(dist);
+  if (dist < 0.55) handleUnlockSuccess();
+  else { setFlStatus('Face not matched (dist:'+dist.toFixed(2)+')',false); showFlError(); }
 }
-
 function handleUnlockSuccess() {
   clearInterval(verInterval);
-  if (facePreviewTimer) { clearInterval(facePreviewTimer); facePreviewTimer = null; }
   if (verStream) { verStream.getTracks().forEach(t=>t.stop()); verStream=null; }
-  $('flFaceBox').style.display='none';
-
+  $('flFaceBox').style.display = 'none';
   window.MindGuard.isLocked = false;
   window.MindGuard.lastUnlockTime = new Date().toISOString();
   $('lsState').textContent = '🔓';
-
-  playBeep(880, 1);
-
+  state.isBlocked = false; state.tempAccess = false; state.screenTime = 0;
+  notifThresholds = new Set(); saveState();
+  document.querySelectorAll('.app-card').forEach(c=>c.classList.remove('blocked-card'));
+  $('statusDot').classList.remove('blocked');
+  $('statusLabel').textContent = 'Active';
+  $('blockedOv').classList.add('hidden');
+  playBeep(880,1);
+  logAlert('Screen unlocked by guardian','info');
   $('successFlash').classList.remove('hidden');
   setTimeout(() => {
     $('successFlash').classList.add('hidden');
     $('faceLockOv').classList.add('hidden');
     $('flAttempts').textContent = '0';
-    $('verifyBtn').disabled = true;
+    $('verifyBtn').disabled = false;
   }, 1400);
-
-  window.dispatchEvent(new CustomEvent('mindguard:unlocked', { detail: getLockReport() }));
+  updateDashboard();
 }
-
 function showFlError() {
-  const e = $('flError'); e.classList.remove('hidden');
-  setTimeout(() => e.classList.add('hidden'), 2500);
+  const e=$('flError'); e.classList.remove('hidden');
+  setTimeout(()=>e.classList.add('hidden'),2500);
 }
-function setFlStatus(msg, spin) {
+function setFlStatus(msg,spin) {
   $('flStatusTxt').textContent = msg;
-  $('flSpin').style.display = spin ? 'block' : 'none';
+  $('flSpin').style.display = spin?'block':'none';
 }
 
-// ══════════════════════════════════════════════════
-// INTEGRATION API (call from external modules)
-// ══════════════════════════════════════════════════
-function getLockReport() {
-  return {
-    isLocked:            window.MindGuard.isLocked,
-    isRegistered:        state.faceRegistered,
-    unlockAttempts:      window.MindGuard.unlockAttempts,
-    timesLocked:         window.MindGuard.timesLocked,
-    lastUnlockTime:      window.MindGuard.lastUnlockTime,
-    lockTriggeredReason: window.MindGuard.lockTriggeredReason,
-    screenTime:          state.screenTime,
-    dailyLimit:          state.dailyLimit,
-    bypassAttempts:      state.bypasses,
-    focusScore:          Math.max(Math.round(100 - Math.min((state.screenTime/(state.dailyLimit*60))*60,60) - Math.min(state.bypasses*10,40)), 0),
-    sessionStart:        sessionStart,
-    reportAt:            new Date().toISOString(),
-  };
-}
-
-// ══════════════════════════════════════════════════
-// UTILS
-// ══════════════════════════════════════════════════
+// ════ ALERTS UTIL ════════════════════════════
 function showAlert(id, msg, type) {
-  const el = $(id); if (!el) return;
+  const el=$(id); if(!el) return;
   el.textContent = msg;
-  el.className = 'p-alert show ' + type;
-  if (type==='info') setTimeout(() => el.classList.remove('show'), 5000);
-}
-function tog(id, visible) {
-  const el = $(id); if (!el) return;
-  el.classList.toggle('hidden', !visible);
+  el.className = 'p-alert show '+type;
+  if (type==='info') setTimeout(()=>el.classList.remove('show'),5000);
 }
 
-// Check backend status
+// ════ BACKEND ════════════════════════════════
 async function checkBackend() {
   try {
-    const r = await fetch(API+'/api/status', {signal: AbortSignal.timeout(1500)});
+    const r = await fetch(API+'/api/status', { signal:AbortSignal.timeout(1500) });
     const d = await r.json();
     backendOnline = true;
-    if (d.isRegistered) {
-      state.faceRegistered = true; saveState();
-      updateRegStatus(true); updateLockPill(true);
-    }
-  } catch(e) { backendOnline = false; }
+    if (d.isRegistered) { state.faceRegistered=true; saveState(); updateRegStatus(true); updateLockPill(true); }
+  } catch(e) { backendOnline=false; }
 }
 
-// ══════════════════════════════════════════════════
-// INIT
-// ══════════════════════════════════════════════════
+// ════ INIT ═══════════════════════════════════
 async function init() {
   injectMobileNav();
-
-  // Wire up nav buttons
-  document.querySelectorAll('.nav-btn').forEach(b => b.addEventListener('click', () => showSection(b.dataset.section)));
-
-  // Restore state
+  document.querySelectorAll('.nav-btn').forEach(b =>
+    b.addEventListener('click', ()=>showSection(b.dataset.section))
+  );
   $('limitSlider').value = state.dailyLimit;
-  if (state.faceRegistered || storedDescriptor) { updateRegStatus(true); updateLockPill(true); }
+  // Restore face descriptor
+  try {
+    const fd = localStorage.getItem('mg_face_desc');
+    if (fd) storedDescriptor = JSON.parse(fd);
+  } catch(e) {}
+
+  if (state.faceRegistered||storedDescriptor) { updateRegStatus(true); updateLockPill(true); }
+  else if (state.parentPin) updateLockPill(true);
 
   if (state.isBlocked && !state.tempAccess) {
-    document.querySelectorAll('.app-card').forEach(c => c.classList.add('blocked-card'));
+    document.querySelectorAll('.app-card').forEach(c=>c.classList.add('blocked-card'));
     $('blockedOv').classList.remove('hidden');
     $('reqSection').classList.remove('hidden');
+    $('statusDot').classList.add('blocked');
+    $('statusLabel').textContent = 'Blocked';
   }
   Object.entries(state.appOpens).forEach(([app,count]) => {
-    const b = $('badge-'+app); if (b) b.textContent = count+' open'+(count!==1?'s':'');
+    const b=$('badge-'+app); if(b) b.textContent=count+' open'+(count!==1?'s':'');
+    const t=$('time-'+app); if(t) t.textContent=fmtTime((state.appTime||{})[app]||0)+' today';
   });
-
-  const pct = (state.screenTime / (state.dailyLimit * 60)) * 100;
-  if (pct>=100) lastAvatarThreshold=100;
-  else if(pct>=80) lastAvatarThreshold=80;
-  else if(pct>=50) lastAvatarThreshold=50;
-
-  checkAvatarMood();
-  updateDashboard();
-
-  // Lock stats
+  updateAlertList();
+  checkAvatarMood(); updateDashboard();
   $('lsAttempts').textContent = window.MindGuard.unlockAttempts;
-  $('lsLocks').textContent    = window.MindGuard.timesLocked;
-  $('lsState').textContent    = '🔓';
-
+  $('lsLocks').textContent = window.MindGuard.timesLocked;
+  $('lsState').textContent = '🔓';
   startTimer();
-
-  // Request notification permission (mirrors screen_time_app.py toasts)
   await requestNotifPermission();
-
-  // Check backend (optional)
   checkBackend();
-
-  // Load face models from local /models folder (served by Express)
+  // Load face api models
   if (typeof faceapi !== 'undefined') {
     loadFaceModels();
   } else {
-    setMdlProgress(0, '⚠️ face-api.js not loaded — check server');
-    showAlert('regAlert', '⚠️ Face AI not loaded. Make sure node server.js is running.', 'err');
+    setMdlProgress(0, '⚠️ Face AI unavailable offline');
   }
-
-  // Greeting
-  setTimeout(() => showAvatarBubble("Hi! I'll help you stay mindful today 👋"), 1500);
-
-  // Eye blink animation
-  setInterval(() => {
-    const eyes = document.querySelectorAll('.av-eye');
-    eyes.forEach(e => { e.style.transform = 'scaleY(0.1)'; });
-    setTimeout(() => eyes.forEach(e => { e.style.transform = 'scaleY(1)'; }), 120);
-  }, 3200);
-
-  // Rotate avatar messages every 15 seconds
-  setInterval(() => {
-    avMsgIndex++;
-    checkAvatarMood();
-  }, 15000);
+  setTimeout(()=>showAvatarBubble("Hey! I'm here to help you stay mindful 👋"), 1500);
 }
-
 document.addEventListener('DOMContentLoaded', init);
 </script>
+<script src="script.js"></script>
 </body>
 </html>
